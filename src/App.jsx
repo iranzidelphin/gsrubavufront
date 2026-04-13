@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './Components/LanguageSwitcher';
 import { AnnouncementsPageContent, PublicAnnouncementsPreview } from './Features/PublicAnnouncements';
 import { RolePortal } from './Features/PortalExperience';
-import { API_BASE_URL, clearAuthSession, getDashboardRoute, getStoredUser, saveAuthSession } from './lib/api';
+import { apiJson, clearAuthSession, getDashboardRoute, getStoredUser, saveAuthSession } from './lib/api';
 import { disconnectSocket } from './lib/socket';
 import './App.css';
 
@@ -456,13 +456,7 @@ function LoginPage() {
     setError('');
     
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      
-      const data = await response.json();
+      const data = await apiJson('/auth/login', 'POST', { email, password });
       
       if (data.success) {
         saveAuthSession(data.token, data.user);
@@ -471,7 +465,7 @@ function LoginPage() {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
-      setError('Connection error. Please try again.');
+      setError(err.message || 'Connection error. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -547,20 +541,14 @@ function RegisterPage() {
       const nameParts = username.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || '';
-      
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          password,
-          role,
-          firstName,
-          lastName
-        })
+
+      const data = await apiJson('/auth/register', 'POST', {
+        email,
+        password,
+        role,
+        firstName,
+        lastName
       });
-      
-      const data = await response.json();
       
       if (data.success) {
         alert(`${t('accountCreated')}! ${t('pleaseLogin')}`);
@@ -569,7 +557,7 @@ function RegisterPage() {
         setError(data.error || 'Registration failed');
       }
     } catch (err) {
-      setError('Connection error. Please try again.');
+      setError(err.message || 'Connection error. Please try again.');
     } finally {
       setLoading(false);
     }

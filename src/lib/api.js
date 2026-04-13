@@ -44,10 +44,18 @@ export async function apiRequest(path, options = {}) {
     headers.set('Authorization', `Bearer ${getStoredToken()}`);
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers,
-  });
+  let response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers,
+    });
+  } catch (error) {
+    throw new Error(
+      `Could not reach the server at ${API_BASE_URL}. Check Vercel VITE_API_BASE_URL and Render CORS settings.`
+    );
+  }
 
   const data = await response.json().catch(() => ({}));
 
