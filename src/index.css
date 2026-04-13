@@ -1,0 +1,187 @@
+/* Custom Color Variables */
+:root {
+  --gs-dark: #1A3C34;
+  --gs-accent: #C07756;
+  --gs-cream: #F4F1EA;
+  --gs-gold: #D4AF37;
+  --gs-text: #2C3E50;
+}
+
+body {
+  background-color: #F4F1EA;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F1EA;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A3C34;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C07756;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #1A3C34;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader-circle {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #C07756;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.clip-path-slant {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+/* Animation Keyframes */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* GSAP Helper Classes */
+.gs-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.gs-reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus States */
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+}
+
+/* Transition Defaults */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-open {
+  transform: translateX(0);
+}
+
+.mobile-menu-closed {
+  transform: translateX(100%);
+}
+
+/* Stat Card Border Colors */
+.border-blue-500 {
+  border-left-color: #3b82f6 !important;
+}
+
+.border-green-500 {
+  border-left-color: #22c55e !important;
+}
+
+.border-red-500 {
+  border-left-color: #ef4444 !important;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Blob Animation for Background */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26, 60, 52, 0.8), rgba(26, 60, 52, 0.4), rgba(26, 60, 52, 0.9));
+  z-index: 1;
+}
+
+/* Hero Image Parallax */
+#hero-bg {
+  transform: scale(1.1);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
