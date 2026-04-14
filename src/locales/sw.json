@@ -287,7 +287,7 @@
 "noMessagesInConversation": "Hakuna ujumbe katika mahusiano haya.",
   "choosePersonConversation": "Chagua mtu wa kuzungumza naye.",
   "viewContacts": "Tazama wasiliana",
-  "wakingUpServer": "Seva inaamka. Ombi la kwanza linaweza kuchukua sekunde chache.",
+  "wakingUpServer": "Backend ya Render inaamka. Ombi la kwanza linaweza kuchukua hadi dakika 14.",
   "announcementNotificationTag": "Tangazo jipya",
   "commentNotificationTag": "Maoni mapya",
   "newComment": "Maoni mapya",
@@ -301,5 +301,13 @@
   "notificationsDisabled": "Arifa zimezimwa.",
   "notificationError": "Imeshindika kusasisha arifa",
   "enabled": "Imewezwa",
-  "settings": "Mipangilio"
+  "settings": "Mipangilio",
+  "actions": "Vitendo",
+  "delete": "Futa",
+  "deleting": "Inafuta...",
+  "deleteTask": "Futa kazi",
+  "adminTaskManagerSubtitle": "Angalia kazi zilizopakiwa na uzifute inapohitajika.",
+  "confirmDeleteUser": "Unataka kufuta {{name}} pamoja na data yake yote?",
+  "confirmDeleteTask": "Unataka kufuta kazi \"{{title}}\" pamoja na maoni yake yote?",
+  "cannotDeleteOwnAccount": "Huwezi kufuta akaunti yako mwenyewe."
 }

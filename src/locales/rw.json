@@ -286,7 +286,7 @@
   "noMessagesInConversation": "Nta butumwa muri iki kiganiro",
   "choosePersonConversation": "Hitamo uwo muvugana",
   "viewContacts": "Reba abo muvugana",
-  "wakingUpServer": "Seriveri irimo gutangira. Bifata amasegonda make.",
+  "wakingUpServer": "Backend ya Render irimo kubyuka. Ubusabe bwa mbere bushobora gufata kugeza ku minota 14.",
   "announcementNotificationTag": "Itangazo rishya",
   "commentNotificationTag": "Igitekerezo gishya",
   "newComment": "Igitekerezo gishya",
@@ -300,5 +300,13 @@
   "notificationsDisabled": "Amatangazo arahagaritswe",
   "notificationError": "Habaye ikibazo mu kohereza amatangazo",
   "enabled": "Byakoreshejwe",
-  "settings": "Amagenamiterere"
+  "settings": "Amagenamiterere",
+  "actions": "Ibikorwa",
+  "delete": "Siba",
+  "deleting": "Birimo gusibwa...",
+  "deleteTask": "Siba umukoro",
+  "adminTaskManagerSubtitle": "Reba imikoro yashyizweho kandi uyisibe igihe bikenewe.",
+  "confirmDeleteUser": "Gusiba {{name}} hamwe n'amakuru ye yose?",
+  "confirmDeleteTask": "Gusiba umukoro \"{{title}}\" hamwe n'ibitekerezo byawo byose?",
+  "cannotDeleteOwnAccount": "Ntushobora gusiba konti yawe."
 }

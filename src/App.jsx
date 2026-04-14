@@ -8,7 +8,7 @@ import { API_BASE_URL, apiJson, clearAuthSession, getDashboardRoute, getStoredUs
 import { disconnectSocket } from './lib/socket';
 import './App.css';
 
-const BACKEND_KEEP_ALIVE_MS = 9 * 60 * 1000;
+const BACKEND_KEEP_ALIVE_MS = 14 * 60 * 1000;
 
 function useBackendKeepAlive() {
   useEffect(() => {
@@ -871,8 +871,6 @@ function App() {
 }
 
 export default App;
-
-
 
 
 

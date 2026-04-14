@@ -298,5 +298,14 @@
   "notificationsDisabled": "Notifications disabled.",
   "notificationError": "Failed to update notifications",
   "enabled": "Enabled",
-  "settings": "Settings"
+  "settings": "Settings",
+  "wakingUpServer": "The Render backend is waking up. The first request can take up to 14 minutes.",
+  "actions": "Actions",
+  "delete": "Delete",
+  "deleting": "Deleting...",
+  "deleteTask": "Delete task",
+  "adminTaskManagerSubtitle": "Review uploaded tasks and remove them when needed.",
+  "confirmDeleteUser": "Delete {{name}} and all related data?",
+  "confirmDeleteTask": "Delete the task \"{{title}}\" and all its comments?",
+  "cannotDeleteOwnAccount": "You cannot delete your own account."
 }

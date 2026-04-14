@@ -5,7 +5,7 @@
   "news": "Actualités",
   "applyOnline": "Postuler en ligne",
   "login": "Connexion",
-  "wakingUpServer": "Le serveur se rÃ©veille. La premiÃ¨re requÃªte peut prendre quelques secondes.",
+  "wakingUpServer": "Le backend Render se réveille. La première requête peut prendre jusqu'à 14 minutes.",
   "announcementNotificationTag": "Nouvelle annonce",
   "commentNotificationTag": "Nouveau commentaire",
   "newComment": "Nouveau commentaire",
@@ -203,5 +203,13 @@
   "newsletter": "Newsletter",
   "newsletterDesc": "Abonnez-vous pour les dernières nouvelles.",
   "yourEmail": "Votre email",
-  "allRightsReserved": "Tous droits réservés."
+  "allRightsReserved": "Tous droits réservés.",
+  "actions": "Actions",
+  "delete": "Supprimer",
+  "deleting": "Suppression...",
+  "deleteTask": "Supprimer la tâche",
+  "adminTaskManagerSubtitle": "Consultez les tâches publiées et supprimez-les si nécessaire.",
+  "confirmDeleteUser": "Supprimer {{name}} et toutes ses données associées ?",
+  "confirmDeleteTask": "Supprimer la tâche \"{{title}}\" et tous ses commentaires ?",
+  "cannotDeleteOwnAccount": "Vous ne pouvez pas supprimer votre propre compte."
 }

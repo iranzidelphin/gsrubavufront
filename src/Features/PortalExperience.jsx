@@ -297,7 +297,7 @@ function AnnouncementComposer({ allowPublic, onCreated, defaultRoles }) {
   );
 }
 
-function UserRoleManager({ users }) {
+function UserRoleManager({ users, currentUserId, deletingUserId, onDeleteUser }) {
   const { t } = useTranslation();
   if (!users.length) {
     return <EmptyState text={t('noUsersFound')} />;
@@ -312,6 +312,7 @@ function UserRoleManager({ users }) {
             <th className="pb-3">Username</th>
             <th className="pb-3">{t('email')}</th>
             <th className="pb-3">{t('role')}</th>
+            <th className="pb-3 text-right">{t('actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -325,6 +326,16 @@ function UserRoleManager({ users }) {
                   {t(item.role)}
                 </span>
               </td>
+              <td className="py-4 text-right">
+                <button
+                  type="button"
+                  onClick={() => onDeleteUser(item)}
+                  disabled={deletingUserId === item.id || item.id === currentUserId}
+                  className="inline-flex items-center justify-center rounded-xl bg-red-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {deletingUserId === item.id ? t('deleting') : t('delete')}
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -333,7 +344,7 @@ function UserRoleManager({ users }) {
   );
 }
 
-function TaskCard({ task, comments, canComment, onComment }) {
+function TaskCard({ task, comments, canComment, onComment, canDelete, onDelete, deletingTaskId }) {
   const { t } = useTranslation();
   const [commentText, setCommentText] = useState('');
   const taskComments = comments.filter((item) => (typeof item.task === 'string' ? item.task === task.id : item.task?.id === task.id));
@@ -350,6 +361,16 @@ function TaskCard({ task, comments, canComment, onComment }) {
         <div className="flex flex-col gap-3 min-w-40 md:min-w-44">
           {task.fileUrl ? <a href={buildFileUrl(task.fileUrl)} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-2xl bg-gs-dark text-white text-center font-bold text-sm md:text-base">{t('downloadFile')} {task.fileName || t('fileName')}</a> : <div className="px-4 py-3 rounded-2xl bg-white border border-gs-dark/10 text-sm text-gray-500">{t('noFileUploaded')}</div>}
           <div className="text-xs text-gray-500">{new Date(task.createdAt).toLocaleString()}</div>
+          {canDelete ? (
+            <button
+              type="button"
+              onClick={() => onDelete(task)}
+              disabled={deletingTaskId === task.id}
+              className="px-4 py-3 rounded-2xl bg-red-600 text-white text-center font-bold text-sm md:text-base transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {deletingTaskId === task.id ? t('deleting') : t('deleteTask')}
+            </button>
+          ) : null}
         </div>
       </div>
       <div className="mt-6">
@@ -493,23 +514,38 @@ function AdminDashboard({ user, onLogout }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [announcements, setAnnouncements] = useState([]);
   const [users, setUsers] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [teacherComments, setTeacherComments] = useState([]);
   const [teacherConversations, setTeacherConversations] = useState([]);
   const [parentConversations, setParentConversations] = useState([]);
   const [activeTeacherId, setActiveTeacherId] = useState('');
   const [activeParentId, setActiveParentId] = useState('');
+  const [deletingUserId, setDeletingUserId] = useState('');
+  const [deletingTaskId, setDeletingTaskId] = useState('');
   const { notifications, dismissNotification, notifyAnnouncement, notifyComment } = useRealtimeNotifications();
 
+  const loadAdminData = async () => {
+    const [announcementData, userData, taskData, commentData, teacherChatData, parentChatData] = await Promise.all([
+      apiRequest('/announcements'),
+      apiRequest('/users'),
+      apiRequest('/tasks'),
+      apiRequest('/tasks/comments/feed'),
+      apiRequest('/chat/admin/teacher'),
+      apiRequest('/chat/admin/parent'),
+    ]);
+
+    setAnnouncements(announcementData.announcements);
+    setUsers(userData.users);
+    setTasks(taskData.tasks);
+    setTeacherComments(commentData.comments);
+    setTeacherConversations(teacherChatData.conversations);
+    setParentConversations(parentChatData.conversations);
+    setActiveTeacherId(teacherChatData.conversations[0]?.user.id || '');
+    setActiveParentId(parentChatData.conversations[0]?.user.id || '');
+  };
+
   useEffect(() => {
-    Promise.all([apiRequest('/announcements'), apiRequest('/users'), apiRequest('/tasks/comments/feed'), apiRequest('/chat/admin/teacher'), apiRequest('/chat/admin/parent')]).then(([announcementData, userData, commentData, teacherChatData, parentChatData]) => {
-      setAnnouncements(announcementData.announcements);
-      setUsers(userData.users);
-      setTeacherComments(commentData.comments);
-      setTeacherConversations(teacherChatData.conversations);
-      setParentConversations(parentChatData.conversations);
-      setActiveTeacherId(teacherChatData.conversations[0]?.user.id || '');
-      setActiveParentId(parentChatData.conversations[0]?.user.id || '');
-    }).catch(() => {});
+    loadAdminData().catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -544,6 +580,41 @@ function AdminDashboard({ user, onLogout }) {
     };
   }, []);
 
+  const handleDeleteUser = async (selectedUser) => {
+    if (selectedUser.id === user.id) {
+      window.alert(t('cannotDeleteOwnAccount'));
+      return;
+    }
+
+    if (!window.confirm(t('confirmDeleteUser', { name: selectedUser.fullName }))) {
+      return;
+    }
+
+    setDeletingUserId(selectedUser.id);
+
+    try {
+      await apiRequest(`/users/${selectedUser.id}`, { method: 'DELETE' });
+      await loadAdminData();
+    } finally {
+      setDeletingUserId('');
+    }
+  };
+
+  const handleDeleteTask = async (task) => {
+    if (!window.confirm(t('confirmDeleteTask', { title: task.title }))) {
+      return;
+    }
+
+    setDeletingTaskId(task.id);
+
+    try {
+      await apiRequest(`/tasks/${task.id}`, { method: 'DELETE' });
+      await loadAdminData();
+    } finally {
+      setDeletingTaskId('');
+    }
+  };
+
   const stats = useMemo(() => ({
     totalUsers: users.length,
     teachers: users.filter((item) => item.role === 'teacher').length,
@@ -570,11 +641,12 @@ function AdminDashboard({ user, onLogout }) {
     <NotificationStack notifications={notifications} onDismiss={dismissNotification} />
     <DashboardShell user={user} onLogout={onLogout} title={t('adminControlRoom')} subtitle={t('adminSubtitle')} accentClass="bg-gs-dark">
       <div className="flex flex-wrap gap-2 mb-6">
-        {['overview', 'announcements', 'users', 'comments', 'chatFromTeacher', 'chatFromParent'].map((tab) => <TabButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)}>{t(tab)}</TabButton>)}
+        {['overview', 'announcements', 'users', 'tasks', 'comments', 'chatFromTeacher', 'chatFromParent'].map((tab) => <TabButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)}>{t(tab)}</TabButton>)}
       </div>
       {activeTab === 'overview' ? <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">{[[t('totalUsers'), stats.totalUsers], [t('teachers'), stats.teachers], [t('parents'), stats.parents], [t('student'), stats.students]].map(([label, value]) => <div key={label} className="rounded-3xl p-6 bg-white border border-gs-dark/5"><p className="text-sm text-gray-500">{label}</p><p className="text-4xl font-serif text-gs-dark mt-3">{value}</p></div>)}</div> : null}
       {activeTab === 'announcements' ? <RoleAnnouncements announcements={announcements} canPost allowPublic onCreated={(announcement) => setAnnouncements((current) => [announcement, ...current])} defaultRoles={['teacher', 'student', 'parent', 'admin']} /> : null}
-      {activeTab === 'users' ? <Panel title={t('userManagement')} subtitle={t('userManagement')}><UserRoleManager users={users} /></Panel> : null}
+      {activeTab === 'users' ? <Panel title={t('userManagement')} subtitle={t('userManagement')}><UserRoleManager users={users} currentUserId={user.id} deletingUserId={deletingUserId} onDeleteUser={handleDeleteUser} /></Panel> : null}
+      {activeTab === 'tasks' ? <Panel title={t('uploadedTasks')} subtitle={t('adminTaskManagerSubtitle')}><div className="space-y-6">{tasks.length ? tasks.map((task) => <TaskCard key={task.id} task={task} comments={teacherComments} canComment={false} canDelete onDelete={handleDeleteTask} deletingTaskId={deletingTaskId} />) : <EmptyState text={t('noTasksYet')} />}</div></Panel> : null}
       {activeTab === 'comments' ? <Panel title={t('teacherComments')} subtitle={t('teacherCommentsSubtitle')}><div className="space-y-3">{teacherComments.length ? teacherComments.map((item) => <div key={item.id} className="rounded-2xl bg-[#fffaf4] border border-gs-dark/10 p-4"><div className="flex justify-between gap-4"><div><p className="font-bold text-gs-dark">{item.author?.fullName} ({item.author?.role})</p><p className="text-sm text-gray-500 mt-1">{t('task')}: {typeof item.task === 'string' ? item.task : item.task?.title}</p></div><span className="text-xs text-gray-400">{new Date(item.createdAt).toLocaleString()}</span></div><p className="text-gray-600 mt-3">{item.text}</p></div>) : <EmptyState text={t('noTeacherComments')} />}</div></Panel> : null}
       {activeTab === 'chatFromTeacher' ? <Panel title={t('chatFromTeacher')} subtitle={t('seeWhichTeacher')}><ChatPanel title={t('teachers')} people={teacherConversations} activePersonId={activeTeacherId} setActivePersonId={setActiveTeacherId} messages={teacherConversations.find((item) => item.user.id === activeTeacherId)?.messages || []} onSend={handleSendMessage} /></Panel> : null}
       {activeTab === 'chatFromParent' ? <Panel title={t('chatFromParent')} subtitle={t('liveParentConversations')}><ChatPanel title={t('parents')} people={parentConversations} activePersonId={activeParentId} setActivePersonId={setActiveParentId} messages={parentConversations.find((item) => item.user.id === activeParentId)?.messages || []} onSend={handleSendMessage} /></Panel> : null}
@@ -592,6 +664,7 @@ function TeacherDashboard({ user, onLogout }) {
   const [chatMessages, setChatMessages] = useState([]);
   const [adminUser, setAdminUser] = useState(null);
   const [taskForm, setTaskForm] = useState({ title: '', description: '', firstComment: '', file: null });
+  const [deletingTaskId, setDeletingTaskId] = useState('');
   const { notifications, dismissNotification, notifyAnnouncement, notifyComment } = useRealtimeNotifications();
 
   const loadTeacherData = async () => {
@@ -647,12 +720,27 @@ function TeacherDashboard({ user, onLogout }) {
     setComments((current) => [...current.filter((item) => item.id !== data.comment.id), data.comment]);
   };
 
+  const handleDeleteTask = async (task) => {
+    if (!window.confirm(t('confirmDeleteTask', { title: task.title }))) {
+      return;
+    }
+
+    setDeletingTaskId(task.id);
+
+    try {
+      await apiRequest(`/tasks/${task.id}`, { method: 'DELETE' });
+      await loadTeacherData();
+    } finally {
+      setDeletingTaskId('');
+    }
+  };
+
   return (
     <>
     <NotificationStack notifications={notifications} onDismiss={dismissNotification} />
     <DashboardShell user={user} onLogout={onLogout} title={t('teacherWorkspace')} subtitle={t('teacherSubtitle')} accentClass="bg-[linear-gradient(135deg,#1A3C34,#2d5b50)]">
       <div className="flex flex-wrap gap-2 mb-6">{['tasks', 'announcements', 'chat'].map((tab) => <TabButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)}>{t(tab)}</TabButton>)}</div>
-      {activeTab === 'tasks' ? <div className="grid xl:grid-cols-[380px_1fr] gap-6"><Panel title={t('uploadTask')} subtitle={t('uploadTaskFile')}><form onSubmit={handleTaskSubmit} className="grid gap-4"><input value={taskForm.title} onChange={(event) => setTaskForm((current) => ({ ...current, title: event.target.value }))} placeholder={t('taskTitle')} className="rounded-2xl border border-gs-dark/10 px-4 py-3" required /><textarea value={taskForm.description} onChange={(event) => setTaskForm((current) => ({ ...current, description: event.target.value }))} placeholder={t('taskDescription')} className="rounded-2xl border border-gs-dark/10 px-4 py-3 min-h-28" required /><textarea value={taskForm.firstComment} onChange={(event) => setTaskForm((current) => ({ ...current, firstComment: event.target.value }))} placeholder={t('firstCommentForStudents')} className="rounded-2xl border border-gs-dark/10 px-4 py-3 min-h-24" /><input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => setTaskForm((current) => ({ ...current, file: event.target.files?.[0] || null }))} className="rounded-2xl border border-gs-dark/10 px-4 py-3" /><div className="text-sm text-gray-500">{t('teachersCanUpload')}</div><button type="submit" className="px-5 py-3 rounded-2xl bg-gs-accent text-white font-bold">{t('uploadTask')}</button></form></Panel><Panel title={t('uploadedTasks')} subtitle={t('uploadedTasksSubtitle')}><div className="space-y-6">{tasks.length ? tasks.map((task) => <TaskCard key={task.id} task={task} comments={comments} canComment onComment={handleTaskComment} />) : <EmptyState text={t('noTasksYet')} />}</div></Panel></div> : null}
+      {activeTab === 'tasks' ? <div className="grid xl:grid-cols-[380px_1fr] gap-6"><Panel title={t('uploadTask')} subtitle={t('uploadTaskFile')}><form onSubmit={handleTaskSubmit} className="grid gap-4"><input value={taskForm.title} onChange={(event) => setTaskForm((current) => ({ ...current, title: event.target.value }))} placeholder={t('taskTitle')} className="rounded-2xl border border-gs-dark/10 px-4 py-3" required /><textarea value={taskForm.description} onChange={(event) => setTaskForm((current) => ({ ...current, description: event.target.value }))} placeholder={t('taskDescription')} className="rounded-2xl border border-gs-dark/10 px-4 py-3 min-h-28" required /><textarea value={taskForm.firstComment} onChange={(event) => setTaskForm((current) => ({ ...current, firstComment: event.target.value }))} placeholder={t('firstCommentForStudents')} className="rounded-2xl border border-gs-dark/10 px-4 py-3 min-h-24" /><input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => setTaskForm((current) => ({ ...current, file: event.target.files?.[0] || null }))} className="rounded-2xl border border-gs-dark/10 px-4 py-3" /><div className="text-sm text-gray-500">{t('teachersCanUpload')}</div><button type="submit" className="px-5 py-3 rounded-2xl bg-gs-accent text-white font-bold">{t('uploadTask')}</button></form></Panel><Panel title={t('uploadedTasks')} subtitle={t('uploadedTasksSubtitle')}><div className="space-y-6">{tasks.length ? tasks.map((task) => <TaskCard key={task.id} task={task} comments={comments} canComment onComment={handleTaskComment} canDelete onDelete={handleDeleteTask} deletingTaskId={deletingTaskId} />) : <EmptyState text={t('noTasksYet')} />}</div></Panel></div> : null}
       {activeTab === 'announcements' ? <RoleAnnouncements announcements={announcements} canPost allowPublic={false} onCreated={(announcement) => setAnnouncements((current) => [announcement, ...current])} defaultRoles={['student', 'parent', 'teacher']} /> : null}
       {activeTab === 'chat' ? <Panel title={t('talkToAdmin')} subtitle={t('parentChatSubtitle')}><ChatPanel title="Admin" people={adminUser ? [{ user: adminUser, messages: chatMessages, lastMessage: chatMessages.at(-1) || null }] : []} activePersonId={adminUser?.id || ''} setActivePersonId={() => {}} messages={chatMessages} onSend={async (_, content) => { const data = await apiJson('/chat/messages', 'POST', { content }); setChatMessages((current) => [...current.filter((item) => item.id !== data.message.id), data.message]); }} /></Panel> : null}
     </DashboardShell>
