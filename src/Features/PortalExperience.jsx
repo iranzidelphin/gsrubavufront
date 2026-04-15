@@ -685,6 +685,20 @@ function GalleryManager() {
   ]);
   const [showForm, setShowForm] = useState(false);
   const [newItem, setNewItem] = useState({ title: '', description: '', image: '' });
+  const [uploading, setUploading] = useState(false);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploading(true);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewItem({ ...newItem, image: reader.result });
+        setUploading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleAddItem = () => {
     if (newItem.title && newItem.image) {
@@ -719,10 +733,24 @@ function GalleryManager() {
               <textarea value={newItem.description} onChange={(e) => setNewItem({ ...newItem, description: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder={t('enterPhotoDescription')} rows={3} />
             </div>
             <div>
-              <label className="block font-semibold mb-1">{t('photoUrl')}</label>
-              <input type="url" value={newItem.image} onChange={(e) => setNewItem({ ...newItem, image: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="https://example.com/image.jpg" />
+              <label className="block font-semibold mb-1">{t('selectPhoto')}</label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition-colors">
+                {newItem.image ? (
+                  <div className="relative">
+                    <img src={newItem.image} alt="Preview" className="max-h-48 mx-auto rounded-lg" />
+                    <button type="button" onClick={() => setNewItem({ ...newItem, image: '' })} className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center">&times;</button>
+                  </div>
+                ) : (
+                  <label className="cursor-pointer">
+                    <i className="fa-solid fa-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
+                    <p className="text-gray-500">{uploading ? t('uploading') : t('clickToUpload')}</p>
+                    <p className="text-xs text-gray-400">{t('supportedFormats')}</p>
+                    <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                  </label>
+                )}
+              </div>
             </div>
-            <button onClick={handleAddItem} className="px-6 py-2 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600">
+            <button onClick={handleAddItem} disabled={!newItem.title || !newItem.image} className="px-6 py-2 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
               {t('savePhoto')}
             </button>
           </div>
