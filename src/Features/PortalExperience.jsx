@@ -676,6 +676,77 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
   );
 }
 
+function GalleryManager() {
+  const { t } = useTranslation();
+  const [galleryItems, setGalleryItems] = useState([
+    { id: 1, title: 'School Building', description: 'Our beautiful school campus main building', image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400' },
+    { id: 2, title: 'Sports Day', description: 'Students participating in annual sports day event', image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400' },
+    { id: 3, title: 'Classroom Learning', description: 'Students engaged in active learning in modern classrooms', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400' },
+  ]);
+  const [showForm, setShowForm] = useState(false);
+  const [newItem, setNewItem] = useState({ title: '', description: '', image: '' });
+
+  const handleAddItem = () => {
+    if (newItem.title && newItem.image) {
+      setGalleryItems([...galleryItems, { ...newItem, id: Date.now() }]);
+      setNewItem({ title: '', description: '', image: '' });
+      setShowForm(false);
+    }
+  };
+
+  const handleDeleteItem = (id) => {
+    setGalleryItems(galleryItems.filter(item => item.id !== id));
+  };
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-6">
+        <p className="text-gray-500">{t('galleryItemsCount', { count: galleryItems.length })}</p>
+        <button onClick={() => setShowForm(!showForm)} className="px-4 py-2 bg-gs-accent text-white rounded-lg font-bold">
+          {showForm ? t('cancel') : t('addNewPhoto')}
+        </button>
+      </div>
+
+      {showForm && (
+        <div className="bg-gray-50 rounded-2xl p-6 mb-6 border border-gs-dark/10">
+          <div className="grid gap-4">
+            <div>
+              <label className="block font-semibold mb-1">{t('photoTitle')}</label>
+              <input type="text" value={newItem.title} onChange={(e) => setNewItem({ ...newItem, title: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder={t('enterPhotoTitle')} />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">{t('photoDescription')}</label>
+              <textarea value={newItem.description} onChange={(e) => setNewItem({ ...newItem, description: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder={t('enterPhotoDescription')} rows={3} />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">{t('photoUrl')}</label>
+              <input type="url" value={newItem.image} onChange={(e) => setNewItem({ ...newItem, image: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="https://example.com/image.jpg" />
+            </div>
+            <button onClick={handleAddItem} className="px-6 py-2 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600">
+              {t('savePhoto')}
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {galleryItems.map((item) => (
+          <div key={item.id} className="bg-white rounded-2xl shadow-md overflow-hidden border border-gs-dark/10">
+            <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+            <div className="p-4">
+              <h4 className="font-bold text-gs-dark text-lg">{item.title}</h4>
+              <p className="text-gray-500 text-sm mt-1">{item.description}</p>
+              <button onClick={() => handleDeleteItem(item.id)} className="mt-3 text-red-500 text-sm font-bold hover:text-red-700">
+                {t('delete')}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function AdminDashboard({ user, onLogout }) {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('overview');
@@ -812,10 +883,11 @@ function AdminDashboard({ user, onLogout }) {
     <NotificationStack notifications={notifications} onDismiss={dismissNotification} />
     <DashboardShell user={user} onLogout={onLogout} title={t('adminControlRoom')} subtitle={t('adminSubtitle')} accentClass="bg-gs-dark">
       <div className="flex flex-wrap gap-2 mb-6">
-        {['overview', 'announcements', 'users', 'applications', 'tasks', 'comments', 'chatFromTeacher', 'chatFromParent'].map((tab) => <TabButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)}>{t(tab)}</TabButton>)}
+        {['overview', 'announcements', 'gallery', 'users', 'applications', 'tasks', 'comments', 'chatFromTeacher', 'chatFromParent'].map((tab) => <TabButton key={tab} active={activeTab === tab} onClick={() => setActiveTab(tab)}>{t(tab)}</TabButton>)}
       </div>
       {activeTab === 'overview' ? <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">{[[t('totalUsers'), stats.totalUsers], [t('teachers'), stats.teachers], [t('parents'), stats.parents], [t('student'), stats.students]].map(([label, value]) => <div key={label} className="rounded-3xl p-6 bg-white border border-gs-dark/5"><p className="text-sm text-gray-500">{label}</p><p className="text-4xl font-serif text-gs-dark mt-3">{value}</p></div>)}</div> : null}
       {activeTab === 'announcements' ? <RoleAnnouncements announcements={announcements} canPost allowPublic onCreated={(announcement) => setAnnouncements((current) => [announcement, ...current])} defaultRoles={['teacher', 'student', 'parent', 'admin']} /> : null}
+      {activeTab === 'gallery' ? <Panel title={t('galleryManagement')} subtitle={t('galleryManagementDesc')}><GalleryManager /></Panel> : null}
       {activeTab === 'users' ? <Panel title={t('userManagement')} subtitle={t('userManagement')}><UserRoleManager users={users} currentUserId={user.id} deletingUserId={deletingUserId} onDeleteUser={handleDeleteUser} /></Panel> : null}
       {activeTab === 'applications' ? <Panel title="Student applications" subtitle="Review submitted students, send reply emails, and request more details."><ApplicationManager applications={applications} selectedApplicationId={selectedApplicationId} setSelectedApplicationId={setSelectedApplicationId} onRefresh={loadAdminData} /></Panel> : null}
       {activeTab === 'tasks' ? <Panel title={t('uploadedTasks')} subtitle={t('adminTaskManagerSubtitle')}><div className="space-y-6">{tasks.length ? tasks.map((task) => <TaskCard key={task.id} task={task} comments={teacherComments} canComment={false} canDelete onDelete={handleDeleteTask} deletingTaskId={deletingTaskId} />) : <EmptyState text={t('noTasksYet')} />}</div></Panel> : null}

@@ -209,6 +209,7 @@ function HomePage() {
       <AnnouncementTicker />
       <AboutPreview />
       <AdministrationSection />
+      <GallerySection />
       <ProgramsPreview />
       <NewsPreview />
       <Footer />
@@ -331,6 +332,39 @@ function ProgramsPreview() {
 // News Preview
 function NewsPreview() {
   return <PublicAnnouncementsPreview />;
+}
+
+// Gallery Section
+function GallerySection() {
+  const { t } = useTranslation();
+  const galleryItems = [
+    { id: 1, title: t('gallerySchoolBuilding'), description: t('gallerySchoolBuildingDesc'), image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400' },
+    { id: 2, title: t('gallerySportsDay'), description: t('gallerySportsDayDesc'), image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400' },
+    { id: 3, title: t('galleryClassroom'), description: t('galleryClassroomDesc'), image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400' },
+  ];
+
+  return (
+    <section className="py-20 bg-gs-cream">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl text-gs-dark mb-4">{t('ourGallery')}</h2>
+          <p className="text-gray-500">{t('gallerySubtitle')}</p>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {galleryItems.map((item) => (
+            <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
+              <div className="p-6">
+                <h3 className="font-serif text-xl font-bold text-gs-dark">{item.title}</h3>
+                <p className="text-gray-500 mt-2">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // Administration Section
