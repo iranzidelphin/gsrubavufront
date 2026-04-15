@@ -208,6 +208,7 @@ function HomePage() {
       </div>
       <AnnouncementTicker />
       <AboutPreview />
+      <AdministrationSection />
       <ProgramsPreview />
       <NewsPreview />
       <Footer />
@@ -332,6 +333,79 @@ function NewsPreview() {
   return <PublicAnnouncementsPreview />;
 }
 
+// Administration Section
+function AdministrationSection() {
+  const { t } = useTranslation();
+  const administrators = [
+    {
+      name: "Dr. Jean Pierre Mugisha",
+      title: t('schoolDirector'),
+      email: "director@gsrubavu.edu.rw",
+      phone: "+250 788 100 001",
+      image: "/director.svg"
+    },
+    {
+      name: "Mrs. Marie Claire Uwitonze",
+      title: t('schoolDOS'),
+      email: "dos@gsrubavu.edu.rw",
+      phone: "+250 788 100 002",
+      image: "/dos.svg"
+    },
+    {
+      name: "Mr. Emmanuel Nkurunziza",
+      title: t('schoolDOD'),
+      email: "dod@gsrubavu.edu.rw",
+      phone: "+250 788 100 003",
+      image: "/dod.svg"
+    },
+    {
+      name: "Mr. Fidèle Niyonkuru",
+      title: t('schoolBursar'),
+      email: "bursar@gsrubavu.edu.rw",
+      phone: "+250 788 100 004",
+      image: "/bursar.svg"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl text-gs-dark mb-4">{t('ourAdministration')}</h2>
+          <p className="text-gray-500">{t('administrationSubtitle')}</p>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {administrators.map((admin, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 flex justify-center">
+                <img src={admin.image} alt={admin.name} className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md" />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="font-serif text-xl font-bold text-gs-dark">{admin.name}</h3>
+                <p className="text-blue-600 font-semibold text-sm mt-1">{admin.title}</p>
+                <div className="mt-4 space-y-2 text-sm text-gray-600">
+                  <p><i className="fa-solid fa-envelope mr-2 text-blue-500"></i>{admin.email}</p>
+                  <p><i className="fa-solid fa-phone mr-2 text-blue-500"></i>{admin.phone}</p>
+                </div>
+                <a 
+                  href={`https://wa.me/${admin.phone.replace(/\D/g, '')}?text=${encodeURIComponent('Hello ' + admin.name + ', I would like to chat with you.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-full text-sm font-bold transition-colors"
+                >
+                  <i className="fa-brands fa-whatsapp"></i>
+                  {t('chatWithThem')}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // About Page
 function AboutPage() {
   const { t } = useTranslation();
@@ -381,6 +455,7 @@ function AboutPage() {
           </div>
         </div>
       </section>
+      <AdministrationSection />
       <Footer />
     </div>
   );

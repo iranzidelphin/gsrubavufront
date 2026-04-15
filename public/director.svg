@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#3B82F6"/>
+  <circle cx="100" cy="80" r="40" fill="#FFFFFF"/>
+  <path d="M50 160 Q100 130 150 160 L150 180 Q100 150 50 180 Z" fill="#FFFFFF"/>
+  <text x="100" y="95" font-family="Arial" font-size="40" font-weight="bold" fill="#3B82F6" text-anchor="middle">DR</text>
+</svg>
