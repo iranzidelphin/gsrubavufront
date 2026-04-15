@@ -1,6 +1,6 @@
 const fallbackApiBaseUrl =
   typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-    ? 'https://ttcrubengeraback-2.onrender.com/api'
+    ? 'https://gsrubavuback.onrender.com/api'
     : 'http://localhost:3002/api';
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || fallbackApiBaseUrl;
