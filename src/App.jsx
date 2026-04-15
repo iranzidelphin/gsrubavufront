@@ -390,22 +390,22 @@ function AboutPage() {
 function ProgramsPage() {
   const { t } = useTranslation();
   const nurseryLevels = [
-    { title: "Nursery 1", code: "N1" },
-    { title: "Nursery 2", code: "N2" },
-    { title: "Nursery 3", code: "N3" },
+    { title: t('nursery1'), code: "N1" },
+    { title: t('nursery2'), code: "N2" },
+    { title: t('nursery3'), code: "N3" },
   ];
   const primaryLevels = [
-    { title: "Primary 1", code: "P1" },
-    { title: "Primary 2", code: "P2" },
-    { title: "Primary 3", code: "P3" },
-    { title: "Primary 4", code: "P4" },
-    { title: "Primary 5", code: "P5" },
-    { title: "Primary 6", code: "P6" },
+    { title: t('primary1'), code: "P1" },
+    { title: t('primary2'), code: "P2" },
+    { title: t('primary3'), code: "P3" },
+    { title: t('primary4'), code: "P4" },
+    { title: t('primary5'), code: "P5" },
+    { title: t('primary6'), code: "P6" },
   ];
   const secondaryLevels = [
-    { title: "Secondary 1", code: "S1" },
-    { title: "Secondary 2", code: "S2" },
-    { title: "Secondary 3", code: "S3" },
+    { title: t('secondary1'), code: "S1" },
+    { title: t('secondary2'), code: "S2" },
+    { title: t('secondary3'), code: "S3" },
   ];
 
   return (
@@ -422,7 +422,7 @@ function ProgramsPage() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Nursery Section */}
           <div className="mb-16">
-            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-baby mr-3"></i>Nursery Section</h3>
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-baby mr-3"></i>{t('nurserySection')}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
               {nurseryLevels.map((level, i) => (
                 <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-8 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
@@ -435,7 +435,7 @@ function ProgramsPage() {
 
           {/* Primary Section */}
           <div className="mb-16">
-            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-school mr-3"></i>Primary Section</h3>
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-school mr-3"></i>{t('primarySection')}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {primaryLevels.map((level, i) => (
                 <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-6 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
@@ -448,7 +448,7 @@ function ProgramsPage() {
 
           {/* Secondary Section */}
           <div className="mb-8">
-            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-graduation-cap mr-3"></i>Ordinary Level (O-Level)</h3>
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-graduation-cap mr-3"></i>{t('ordinaryLevel')}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
               {secondaryLevels.map((level, i) => (
                 <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-8 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
@@ -514,10 +514,10 @@ function LoginPage() {
         saveAuthSession(data.token, data.user);
         navigate(getDashboardRoute(data.user.role), { replace: true });
       } else {
-        setError(data.error || 'Login failed');
+        setError(data.error || t('loginFailed'));
       }
     } catch (err) {
-      setError(err.message || 'Connection error. Please try again.');
+      setError(err.message || t('connectionError'));
     } finally {
       setLoading(false);
     }
@@ -594,6 +594,12 @@ function RegisterPage() {
     parent: 'Gets the parent dashboard for announcements and admin chat.',
     admin: 'Gets the admin dashboard for announcements, user roles, and conversations.',
   };
+  const roleDescriptionKeys = {
+    student: 'roleDescStudent',
+    teacher: 'roleDescTeacher',
+    parent: 'roleDescParent',
+    admin: 'roleDescAdmin',
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -617,10 +623,10 @@ function RegisterPage() {
         alert(`${t('accountCreated')}! ${t('pleaseLogin')}`);
         navigate('/login');
       } else {
-        setError(data.error || 'Registration failed');
+        setError(data.error || t('registrationFailed'));
       }
     } catch (err) {
-      setError(err.message || 'Connection error. Please try again.');
+      setError(err.message || t('connectionError'));
     } finally {
       setLoading(false);
     }
@@ -653,7 +659,7 @@ function RegisterPage() {
               ))}
             </div>
             <div className="mt-3 rounded-xl bg-[#fffaf4] border border-gs-dark/10 p-4 text-sm text-gray-600">
-              {roleDescriptions[role]}
+              {t(roleDescriptionKeys[role])}
             </div>
           </div>
 
@@ -834,11 +840,11 @@ function ApplyPage() {
             <input type="email" value={form.studentEmail} onChange={(e) => setForm((current) => ({ ...current, studentEmail: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
           </div>
           <div className="mt-6">
-            <label className="block font-semibold mb-1">Reason to apply</label>
+            <label className="block font-semibold mb-1">{t('reasonToApply')}</label>
             <textarea
               value={form.reasonToApply}
               onChange={(e) => setForm((current) => ({ ...current, reasonToApply: e.target.value }))}
-              placeholder="add reason to apply uri umurokarasi cyangwa uvuye muri o level"
+              placeholder={t('reasonToApplyPlaceholder')}
               className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -901,10 +907,10 @@ function AdditionalApplicationPage() {
     <div className="font-sans text-gs-text antialiased pt-20 min-h-screen bg-gs-cream">
       <Navbar />
       <div className="bg-gs-dark py-4 shadow-md">
-        <h1 className="text-white text-center text-xl md:text-2xl font-bold tracking-wide">Additional Application Form</h1>
+        <h1 className="text-white text-center text-xl md:text-2xl font-bold tracking-wide">{t('additionalApplicationForm')}</h1>
       </div>
       <div className="max-w-4xl mx-auto bg-white p-6 mt-6 shadow-lg rounded-lg mb-20">
-        {loading ? <p className="text-gray-500">Loading...</p> : null}
+        {loading ? <p className="text-gray-500">{t('loading')}</p> : null}
         {error ? <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div> : null}
         {!loading && application && !submitted ? (
           <form onSubmit={handleSubmit} className="grid gap-6">
@@ -914,18 +920,18 @@ function AdditionalApplicationPage() {
               <p className="text-sm text-gray-500 mt-1">{application.tradeOrSection} | {application.level}</p>
             </div>
             <div>
-              <label className="block font-semibold mb-1">School fees details</label>
+              <label className="block font-semibold mb-1">{t('schoolFeesDetails')}</label>
               <textarea value={form.schoolFeesDetails} onChange={(e) => setForm((current) => ({ ...current, schoolFeesDetails: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500" required />
             </div>
             <div>
-              <label className="block font-semibold mb-1">Additional information</label>
+              <label className="block font-semibold mb-1">{t('additionalInformation')}</label>
               <textarea value={form.additionalInformation} onChange={(e) => setForm((current) => ({ ...current, additionalInformation: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
-              <label className="block font-semibold mb-1">Upload school fees approvement file</label>
+              <label className="block font-semibold mb-1">{t('uploadSchoolFeesFile')}</label>
               <input type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" onChange={(e) => setForm((current) => ({ ...current, schoolFeesApprovalFile: e.target.files?.[0] || null }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
-            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold shadow-md transition duration-300">Submit additional form</button>
+            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold shadow-md transition duration-300">{t('submitAdditionalForm')}</button>
           </form>
         ) : null}
         {submitted ? (
@@ -933,8 +939,8 @@ function AdditionalApplicationPage() {
             <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <i className="fa-solid fa-check text-4xl text-blue-600"></i>
             </div>
-            <h2 className="font-serif text-3xl font-bold text-gs-dark mb-4">Additional form submitted</h2>
-            <p className="text-gray-600">Your extra information has been saved successfully.</p>
+            <h2 className="font-serif text-3xl font-bold text-gs-dark mb-4">{t('additionalFormSubmitted')}</h2>
+            <p className="text-gray-600">{t('additionalFormSuccess')}</p>
           </div>
         ) : null}
       </div>

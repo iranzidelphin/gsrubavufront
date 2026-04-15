@@ -356,7 +356,7 @@ function TaskCard({ task, comments, canComment, onComment, canDelete, onDelete, 
           <h5 className="font-serif text-xl md:text-2xl text-gs-dark">{task.title}</h5>
           <p className="text-gray-600 mt-2 text-sm md:text-base">{task.description}</p>
           {task.firstComment ? <div className="mt-4 p-3 md:p-4 rounded-2xl bg-white border border-gs-dark/5"><p className="text-xs uppercase tracking-[0.2em] text-gs-accent font-bold mb-2">{t('firstComment')}</p><p className="text-gray-600 text-sm md:text-base">{task.firstComment}</p></div> : null}
-          <div className="text-sm text-gray-500 mt-4">{t('teacherName')}: {task.teacher?.fullName || 'Unknown'}</div>
+          <div className="text-sm text-gray-500 mt-4">{t('teacherName')}: {task.teacher?.fullName || t('unknown')}</div>
         </div>
         <div className="flex flex-col gap-3 min-w-40 md:min-w-44">
           {task.fileUrl ? <a href={buildFileUrl(task.fileUrl)} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-2xl bg-gs-dark text-white text-center font-bold text-sm md:text-base">{t('downloadFile')} {task.fileName || t('fileName')}</a> : <div className="px-4 py-3 rounded-2xl bg-white border border-gs-dark/10 text-sm text-gray-500">{t('noFileUploaded')}</div>}
@@ -532,7 +532,7 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
 
   useEffect(() => {
     setEmailForm({
-      subject: selectedApplication?.status === 'additional-info-received' ? 'Final application update' : 'Application update',
+      subject: selectedApplication?.status === 'additional-info-received' ? t('finalApplicationUpdate') : t('applicationUpdate'),
       text: '',
       adminNotes: selectedApplication?.adminNotes || '',
       requestAdditionalForm: false,
@@ -560,7 +560,7 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
   };
 
   if (!applications.length) {
-    return <EmptyState text="No student applications yet." />;
+    return <EmptyState text={t('noStudentApplications')} />;
   }
 
   return (
@@ -581,7 +581,7 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
               <span className="rounded-full bg-gs-dark px-3 py-1 text-xs text-white">{item.status}</span>
             </div>
             <p className="mt-2 text-sm text-gray-500">{item.tradeOrSection} | {item.level}</p>
-            <div className="mt-3 text-gs-accent text-sm font-bold">View</div>
+            <div className="mt-3 text-gs-accent text-sm font-bold">{t('view')}</div>
           </button>
         ))}
       </div>
@@ -597,24 +597,24 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
               <span className="rounded-full bg-gs-dark px-4 py-2 text-sm text-white">{selectedApplication.status}</span>
             </div>
             <div className="mt-5 grid md:grid-cols-2 gap-4 text-sm text-gray-600">
-              <div><span className="font-bold text-gs-dark">SDMS:</span> {selectedApplication.sdmsCode}</div>
-              <div><span className="font-bold text-gs-dark">Phone:</span> {selectedApplication.phone}</div>
-              <div><span className="font-bold text-gs-dark">Trade:</span> {selectedApplication.tradeOrSection}</div>
-              <div><span className="font-bold text-gs-dark">Model:</span> {selectedApplication.model}</div>
-              <div><span className="font-bold text-gs-dark">Gender:</span> {selectedApplication.gender}</div>
-              <div><span className="font-bold text-gs-dark">Level:</span> {selectedApplication.level}</div>
-              <div><span className="font-bold text-gs-dark">Last level mark:</span> {selectedApplication.lastLevelMark}</div>
-              <div><span className="font-bold text-gs-dark">Date of birth:</span> {new Date(selectedApplication.dateOfBirth).toLocaleDateString()}</div>
+              <div><span className="font-bold text-gs-dark">{t('sdms')}:</span> {selectedApplication.sdmsCode}</div>
+              <div><span className="font-bold text-gs-dark">{t('phone')}:</span> {selectedApplication.phone}</div>
+              <div><span className="font-bold text-gs-dark">{t('trade')}:</span> {selectedApplication.tradeOrSection}</div>
+              <div><span className="font-bold text-gs-dark">{t('model')}:</span> {selectedApplication.model}</div>
+              <div><span className="font-bold text-gs-dark">{t('gender')}:</span> {selectedApplication.gender}</div>
+              <div><span className="font-bold text-gs-dark">{t('level')}:</span> {selectedApplication.level}</div>
+              <div><span className="font-bold text-gs-dark">{t('lastLevelMark')}:</span> {selectedApplication.lastLevelMark}</div>
+              <div><span className="font-bold text-gs-dark">{t('dateOfBirth')}:</span> {new Date(selectedApplication.dateOfBirth).toLocaleDateString()}</div>
             </div>
             <div className="mt-5">
-              <p className="font-bold text-gs-dark">Reason to apply</p>
-              <p className="mt-2 text-sm text-gray-600">{selectedApplication.reasonToApply || 'No reason added.'}</p>
+              <p className="font-bold text-gs-dark">{t('reasonToApply')}</p>
+              <p className="mt-2 text-sm text-gray-600">{selectedApplication.reasonToApply || t('noReasonAdded')}</p>
             </div>
             {selectedApplication.schoolFeesDetails || selectedApplication.additionalInformation || selectedApplication.schoolFeesApprovalFileUrl ? (
               <div className="mt-5 rounded-2xl bg-white p-4 border border-gs-dark/10">
-                <p className="font-bold text-gs-dark">Additional form</p>
-                <p className="mt-2 text-sm text-gray-600">{selectedApplication.schoolFeesDetails || 'No school fees details yet.'}</p>
-                <p className="mt-2 text-sm text-gray-600">{selectedApplication.additionalInformation || 'No extra notes submitted yet.'}</p>
+                <p className="font-bold text-gs-dark">{t('additionalForm')}</p>
+                <p className="mt-2 text-sm text-gray-600">{selectedApplication.schoolFeesDetails || t('noSchoolFeesDetails')}</p>
+                <p className="mt-2 text-sm text-gray-600">{selectedApplication.additionalInformation || t('noExtraNotes')}</p>
                 {selectedApplication.schoolFeesApprovalFileUrl ? (
                   <a href={buildFileUrl(selectedApplication.schoolFeesApprovalFileUrl)} target="_blank" rel="noreferrer" className="mt-3 inline-flex rounded-xl bg-gs-dark px-4 py-2 text-sm font-bold text-white">
                     Open fees approval file
@@ -627,46 +627,46 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
           <div className="rounded-3xl border border-gs-dark/10 bg-white p-5">
             <div className="flex flex-wrap gap-3">
               <button type="button" onClick={() => sendEmail({
-                subject: 'Additional information required',
-                text: 'Please complete the additional form so we can continue reviewing your application.',
+                subject: t('additionalInfoRequested'),
+                text: t('additionalInfoRequest'),
                 requestAdditionalForm: true,
                 kind: 'additional-request',
                 markStatus: 'additional-info-requested',
                 adminNotes: emailForm.adminNotes,
               })} disabled={sending} className="rounded-2xl bg-gs-dark px-4 py-3 text-sm font-bold text-white disabled:opacity-50">
-                Send additional form link
+                {t('sendAdditionalForm')}
               </button>
               <button type="button" onClick={() => sendEmail({
-                subject: 'Final admission approval',
-                text: 'You are officially accepted. Please come to school with your parent or guardian and bring all required documents.',
+                subject: t('finalAdmissionApproval'),
+                text: t('officialAcceptance'),
                 requestAdditionalForm: false,
                 kind: 'final-approval',
                 markStatus: 'accepted',
                 adminNotes: emailForm.adminNotes,
               })} disabled={sending} className="rounded-2xl bg-blue-600 px-4 py-3 text-sm font-bold text-white disabled:opacity-50">
-                Send final approval
+                {t('sendFinalApproval')}
               </button>
             </div>
 
             <div className="mt-6 grid gap-4">
               {error ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div> : null}
-              <input value={emailForm.subject} onChange={(event) => setEmailForm((current) => ({ ...current, subject: event.target.value }))} placeholder="Email subject" className="rounded-2xl border border-gs-dark/10 px-4 py-3" />
-              <textarea value={emailForm.text} onChange={(event) => setEmailForm((current) => ({ ...current, text: event.target.value }))} placeholder="Write the admin reply here" className="min-h-28 rounded-2xl border border-gs-dark/10 px-4 py-3" />
-              <textarea value={emailForm.adminNotes} onChange={(event) => setEmailForm((current) => ({ ...current, adminNotes: event.target.value }))} placeholder="Admin notes" className="min-h-24 rounded-2xl border border-gs-dark/10 px-4 py-3" />
+              <input value={emailForm.subject} onChange={(event) => setEmailForm((current) => ({ ...current, subject: event.target.value }))} placeholder={t('emailSubject')} className="rounded-2xl border border-gs-dark/10 px-4 py-3" />
+              <textarea value={emailForm.text} onChange={(event) => setEmailForm((current) => ({ ...current, text: event.target.value }))} placeholder={t('writeReply')} className="min-h-28 rounded-2xl border border-gs-dark/10 px-4 py-3" />
+              <textarea value={emailForm.adminNotes} onChange={(event) => setEmailForm((current) => ({ ...current, adminNotes: event.target.value }))} placeholder={t('adminNotes')} className="min-h-24 rounded-2xl border border-gs-dark/10 px-4 py-3" />
               <select value={emailForm.markStatus} onChange={(event) => setEmailForm((current) => ({ ...current, markStatus: event.target.value }))} className="rounded-2xl border border-gs-dark/10 px-4 py-3">
-                <option value="">Keep current status</option>
-                <option value="submitted">Submitted</option>
-                <option value="additional-info-requested">Additional info requested</option>
-                <option value="additional-info-received">Additional info received</option>
-                <option value="accepted">Accepted</option>
-                <option value="rejected">Rejected</option>
+                <option value="">{t('keepCurrentStatus')}</option>
+                <option value="submitted">{t('submitted')}</option>
+                <option value="additional-info-requested">{t('additionalInfoRequestedStatus')}</option>
+                <option value="additional-info-received">{t('additionalInfoReceived')}</option>
+                <option value="accepted">{t('accepted')}</option>
+                <option value="rejected">{t('rejected')}</option>
               </select>
               <label className="flex items-center gap-2 text-sm text-gray-600">
                 <input type="checkbox" checked={emailForm.requestAdditionalForm} onChange={(event) => setEmailForm((current) => ({ ...current, requestAdditionalForm: event.target.checked }))} />
-                Include additional form link
+                {t('includeAdditionalForm')}
               </label>
               <button type="button" onClick={() => sendEmail()} disabled={sending} className="rounded-2xl bg-gs-accent px-4 py-3 text-sm font-bold text-white disabled:opacity-50">
-                {sending ? 'Sending...' : 'Send custom email'}
+                {sending ? t('sending') : t('sendCustomEmail')}
               </button>
             </div>
           </div>

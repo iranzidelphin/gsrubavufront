@@ -1,17 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#C07756"/>
-      <stop offset="100%" style="stop-color:#8f5e42"/>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
     </linearGradient>
   </defs>
   <!-- Background circle -->
-  <circle cx="50" cy="50" r="48" fill="#1A3C34"/>
-  <!-- Graduation cap -->
-  <path d="M25 65 L50 35 L75 65" fill="url(#grad)"/>
-  <circle cx="50" cy="38" r="8" fill="#1A3C34"/>
-  <rect x="47" y="65" width="6" height="12" fill="#1A3C34"/>
-  <circle cx="50" cy="77" r="4" fill="#1A3C34"/>
-  <!-- TTC text -->
-  <text x="50" y="92" font-family="serif" font-size="14" font-weight="bold" fill="#F4F1EA" text-anchor="middle">TTC</text>
+  <circle cx="50" cy="50" r="48" fill="url(#blueGrad)"/>
+  <!-- GSR text -->
+  <text x="50" y="62" font-family="serif" font-size="36" font-weight="bold" fill="#FFFFFF" text-anchor="middle">GSR</text>
+  <!-- Small graduation cap icon on top -->
+  <path d="M38 30 L50 20 L62 30" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
