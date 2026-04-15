@@ -1024,13 +1024,14 @@ export function RolePortal({ user, onLogout }) {
 }
 
 export function PortalShortcut() {
+  const { t } = useTranslation();
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
       {[
-        ['Teacher tasks', 'Teachers upload task files and start the first comment thread.'],
-        ['Student replies', 'Students comment on tasks and teachers receive those updates live.'],
-        ['Announcements', 'Role-based announcements can also appear for public visitors.'],
-        ['Live chat', 'Admin talks with teachers and parents in separate real-time spaces.'],
+        [t('teacherTasks'), t('teacherTasksDesc')],
+        [t('studentReplies'), t('studentRepliesDesc')],
+        [t('liveAnnouncements'), t('announcementsDesc')],
+        [t('liveChat'), t('liveChatDesc')],
       ].map(([title, text]) => (
         <div key={title} className="rounded-3xl p-5 bg-white border border-gs-dark/5">
           <h4 className="font-serif text-xl text-gs-dark">{title}</h4>
@@ -1039,7 +1040,7 @@ export function PortalShortcut() {
       ))}
       <div className="md:col-span-2 xl:col-span-4">
         <Link to="/login" className="inline-flex px-6 py-3 rounded-full bg-gs-accent text-white font-bold">
-          Open login to continue
+          {t('openLoginToContinue')}
         </Link>
       </div>
     </div>

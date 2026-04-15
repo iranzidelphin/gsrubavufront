@@ -174,8 +174,8 @@ function Footer() {
         <div>
           <h4 className="font-bold text-white mb-6">{t('contactUs')}</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><i className="fa-solid fa-location-dot mr-2 text-blue-500"></i> Rubavu District, Western Province</li>
-            <li><i className="fa-solid fa-phone mr-2 text-blue-500"></i> +250 788 123 456</li>
+            <li><i className="fa-solid fa-location-dot mr-2 text-blue-500"></i> {t('address')}</li>
+            <li><i className="fa-solid fa-phone mr-2 text-blue-500"></i> {t('phone')}</li>
             <li><i className="fa-solid fa-envelope mr-2 text-blue-500"></i> info@gsrubavu.edu.rw</li>
           </ul>
         </div>
@@ -260,22 +260,22 @@ function AboutPreview() {
 function ProgramsPreview() {
   const { t } = useTranslation();
   const nurseryLevels = [
-    { title: "Nursery 1", code: "N1" },
-    { title: "Nursery 2", code: "N2" },
-    { title: "Nursery 3", code: "N3" },
+    { title: t('nursery1'), code: "N1" },
+    { title: t('nursery2'), code: "N2" },
+    { title: t('nursery3'), code: "N3" },
   ];
   const primaryLevels = [
-    { title: "Primary 1", code: "P1" },
-    { title: "Primary 2", code: "P2" },
-    { title: "Primary 3", code: "P3" },
-    { title: "Primary 4", code: "P4" },
-    { title: "Primary 5", code: "P5" },
-    { title: "Primary 6", code: "P6" },
+    { title: t('primary1'), code: "P1" },
+    { title: t('primary2'), code: "P2" },
+    { title: t('primary3'), code: "P3" },
+    { title: t('primary4'), code: "P4" },
+    { title: t('primary5'), code: "P5" },
+    { title: t('primary6'), code: "P6" },
   ];
   const secondaryLevels = [
-    { title: "Secondary 1", code: "S1" },
-    { title: "Secondary 2", code: "S2" },
-    { title: "Secondary 3", code: "S3" },
+    { title: t('secondary1'), code: "S1" },
+    { title: t('secondary2'), code: "S2" },
+    { title: t('secondary3'), code: "S3" },
   ];
 
   return (
@@ -289,7 +289,7 @@ function ProgramsPreview() {
 
         {/* Nursery Section */}
         <div className="mb-12">
-          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-baby mr-2"></i>Nursery</h3>
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-baby mr-2"></i>{t('nurserySection')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {nurseryLevels.map((level, i) => (
               <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">
@@ -301,7 +301,7 @@ function ProgramsPreview() {
 
         {/* Primary Section */}
         <div className="mb-12">
-          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-school mr-2"></i>Primary</h3>
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-school mr-2"></i>{t('primarySection')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {primaryLevels.map((level, i) => (
               <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">
@@ -313,7 +313,7 @@ function ProgramsPreview() {
 
         {/* Secondary Section */}
         <div className="mb-8">
-          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-graduation-cap mr-2"></i>Ordinary Level</h3>
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-graduation-cap mr-2"></i>{t('ordinaryLevel')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {secondaryLevels.map((level, i) => (
               <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">

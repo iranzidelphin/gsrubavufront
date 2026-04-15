@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { apiRequest } from '../lib/api';
 
 function AnnouncementCard({ item, compact = false }) {
+  const { t } = useTranslation();
   return (
     <article className="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-black/5">
       <div className="flex items-start justify-between gap-4 mb-3">
@@ -20,7 +21,7 @@ function AnnouncementCard({ item, compact = false }) {
       <p className={`text-gray-600 ${compact ? 'line-clamp-3' : ''}`}>{item.message}</p>
       {item.createdBy && (
         <p className="text-xs text-gray-400 mt-4">
-          Posted by {item.createdBy.fullName}
+          {t('postedBy')} {item.createdBy.fullName}
         </p>
       )}
     </article>
@@ -58,7 +59,7 @@ export function PublicAnnouncementsPreview() {
             announcements.map((item) => <AnnouncementCard key={item.id} item={item} compact />)
           ) : (
             <div className="col-span-full bg-white rounded-2xl p-10 text-center text-gray-500">
-              Public announcements will appear here after admin posts them.
+              {t('publicAnnouncementsAppear')}
             </div>
           )}
         </div>
@@ -68,6 +69,7 @@ export function PublicAnnouncementsPreview() {
 }
 
 export function AnnouncementsPageContent() {
+  const { t } = useTranslation();
   const [announcements, setAnnouncements] = useState([]);
   const [filter, setFilter] = useState('all');
 
@@ -96,8 +98,8 @@ export function AnnouncementsPageContent() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-300 pb-4 gap-4">
           <div>
-            <h3 className="text-gs-accent font-bold uppercase tracking-wider mb-1">Stay Updated</h3>
-            <h2 className="font-serif text-4xl text-gs-dark">Live School Announcements</h2>
+            <h3 className="text-gs-accent font-bold uppercase tracking-wider mb-1">{t('stayUpdated')}</h3>
+            <h2 className="font-serif text-4xl text-gs-dark">{t('latestAnnouncements')}</h2>
           </div>
           <div className="flex gap-2 flex-wrap">
             {['all', 'public', 'admin', 'teacher'].map((value) => (
@@ -120,7 +122,7 @@ export function AnnouncementsPageContent() {
             filtered.map((item) => <AnnouncementCard key={item.id} item={item} />)
           ) : (
             <div className="col-span-full bg-white rounded-2xl p-10 text-center text-gray-500">
-              No announcements match this filter yet.
+              {t('noAnnouncementsMatch')}
             </div>
           )}
         </div>
