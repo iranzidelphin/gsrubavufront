@@ -56,22 +56,22 @@ function Navbar() {
     <nav className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gs-dark/95 shadow-lg backdrop-blur-md py-2' : 'bg-gs-dark py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gs-accent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+          <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
             <i className="fa-solid fa-graduation-cap"></i>
           </div>
-          <span className="font-serif text-xl md:text-2xl font-bold tracking-wide text-white hidden sm:block">TTC <span className="text-gs-accent">RUBENGERA</span></span>
+          <span className="font-serif text-xl md:text-2xl font-bold tracking-wide text-white hidden sm:block">Gs <span className="text-blue-400">rubavu</span></span>
         </Link>
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
           <LanguageSwitcher />
           <div className="flex items-center gap-6 font-medium">
-            <Link to="/" className="text-white hover:text-gs-accent transition-colors text-sm">{t('home')}</Link>
-            <Link to="/about" className="text-white hover:text-gs-accent transition-colors text-sm">{t('aboutUs')}</Link>
-            <Link to="/programs" className="text-white hover:text-gs-accent transition-colors text-sm">{t('programs')}</Link>
-            <Link to="/announcements" className="text-white hover:text-gs-accent transition-colors text-sm">{t('news')}</Link>
+            <Link to="/" className="text-white hover:text-blue-500 transition-colors text-sm">{t('home')}</Link>
+            <Link to="/about" className="text-white hover:text-blue-500 transition-colors text-sm">{t('aboutUs')}</Link>
+            <Link to="/programs" className="text-white hover:text-blue-500 transition-colors text-sm">{t('programs')}</Link>
+            <Link to="/announcements" className="text-white hover:text-blue-500 transition-colors text-sm">{t('news')}</Link>
             <Link to="/apply" className="px-4 py-2 border border-white hover:bg-white hover:text-gs-dark transition-colors rounded text-sm text-white">{t('applyOnline')}</Link>
-            <Link to="/login" className="px-6 py-2 bg-gs-accent hover:bg-orange-700 text-white rounded-full transition-all transform hover:scale-105 shadow-lg text-sm">{t('login')}</Link>
+            <Link to="/login" className="px-6 py-2 bg-blue-500 hover:bg-orange-700 text-white rounded-full transition-all transform hover:scale-105 shadow-lg text-sm">{t('login')}</Link>
           </div>
         </div>
 
@@ -87,12 +87,12 @@ function Navbar() {
           <i className="fa-solid fa-times"></i>
         </button>
         <div className="mb-4"><LanguageSwitcher /></div>
-        <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-gs-accent">{t('home')}</Link>
-        <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-gs-accent">{t('aboutUs')}</Link>
-        <Link to="/programs" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-gs-accent">{t('programs')}</Link>
-        <Link to="/announcements" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-gs-accent">{t('news')}</Link>
-        <Link to="/apply" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-gs-accent">{t('applyOnline')}</Link>
-        <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="px-6 py-2 bg-gs-accent rounded-full text-white">{t('login')}</Link>
+        <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-blue-500">{t('home')}</Link>
+        <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-blue-500">{t('aboutUs')}</Link>
+        <Link to="/programs" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-blue-500">{t('programs')}</Link>
+        <Link to="/announcements" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-blue-500">{t('news')}</Link>
+        <Link to="/apply" onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-blue-500">{t('applyOnline')}</Link>
+        <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="px-6 py-2 bg-blue-500 rounded-full text-white">{t('login')}</Link>
       </div>
     </nav>
   );
@@ -109,12 +109,12 @@ function HeroSection() {
       </div>
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="overflow-hidden mb-4">
-          <h2 className="text-gs-accent font-bold tracking-[0.3em] uppercase text-sm md:text-base">{t('welcome')}</h2>
+          <h2 className="text-blue-500 font-bold tracking-[0.3em] uppercase text-sm md:text-base">{t('heroSubtitle')}</h2>
         </div>
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight text-shadow">{t('schoolMotto')}</h1>
+        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight text-shadow">{t('heroTitle')}</h1>
         <p className="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">{t('schoolDescription')}</p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Link to="/programs" className="px-8 py-4 bg-gs-accent text-white rounded-sm hover:bg-orange-700 transition-all duration-300 shadow-xl border border-gs-accent">{t('programs')}</Link>
+          <Link to="/programs" className="px-8 py-4 bg-blue-500 text-white rounded-sm hover:bg-orange-700 transition-all duration-300 shadow-xl border border-blue-500">{t('programs')}</Link>
           <Link to="/apply" className="px-8 py-4 bg-transparent border border-white text-white rounded-sm hover:bg-white hover:text-gs-dark transition-all duration-300">{t('apply')}</Link>
         </div>
       </div>
@@ -136,7 +136,7 @@ function AnnouncementTicker() {
   ];
 
   return (
-    <div className="bg-gs-accent text-white py-3 overflow-hidden relative z-20 shadow-lg">
+    <div className="bg-blue-500 text-white py-3 overflow-hidden relative z-20 shadow-lg">
       <div className="whitespace-nowrap animate-marquee flex items-center gap-8 font-bold text-sm uppercase tracking-wider">
         {items.map((item, index) => (
           <React.Fragment key={index}>
@@ -157,26 +157,26 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-1">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 bg-gs-accent rounded-full flex items-center justify-center text-white font-bold text-sm"><i className="fa-solid fa-graduation-cap"></i></div>
-            <span className="font-serif text-xl font-bold">TTC RUBENGERA</span>
+            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm"><i className="fa-solid fa-graduation-cap"></i></div>
+            <span className="font-serif text-xl font-bold text-white">Gs rubavu</span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">{t('footerDescription')}</p>
         </div>
         <div>
           <h4 className="font-bold text-white mb-6">{t('quickLinks')}</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><Link to="/apply" className="hover:text-gs-accent transition-colors">{t('admissions')}</Link></li>
-            <li><a href="#" className="hover:text-gs-accent transition-colors">{t('academicCalendar')}</a></li>
-            <li><a href="#" className="hover:text-gs-accent transition-colors">{t('schoolPolicies')}</a></li>
-            <li><a href="#" className="hover:text-gs-accent transition-colors">{t('careers')}</a></li>
+            <li><Link to="/apply" className="hover:text-blue-500 transition-colors">{t('admissions')}</Link></li>
+            <li><a href="#" className="hover:text-blue-500 transition-colors">{t('academicCalendar')}</a></li>
+            <li><a href="#" className="hover:text-blue-500 transition-colors">{t('schoolPolicies')}</a></li>
+            <li><a href="#" className="hover:text-blue-500 transition-colors">{t('careers')}</a></li>
           </ul>
         </div>
         <div>
           <h4 className="font-bold text-white mb-6">{t('contactUs')}</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><i className="fa-solid fa-location-dot mr-2 text-gs-accent"></i> Rubavu District, Western Province</li>
-            <li><i className="fa-solid fa-phone mr-2 text-gs-accent"></i> +250 788 123 456</li>
-            <li><i className="fa-solid fa-envelope mr-2 text-gs-accent"></i> info@ttcrubengera.edu.rw</li>
+            <li><i className="fa-solid fa-location-dot mr-2 text-blue-500"></i> Rubavu District, Western Province</li>
+            <li><i className="fa-solid fa-phone mr-2 text-blue-500"></i> +250 788 123 456</li>
+            <li><i className="fa-solid fa-envelope mr-2 text-blue-500"></i> info@gsrubavu.edu.rw</li>
           </ul>
         </div>
         <div>
@@ -184,12 +184,12 @@ function Footer() {
           <p className="text-xs text-gray-400 mb-4">{t('newsletterDesc')}</p>
           <div className="flex">
             <input type="email" placeholder={t('yourEmail')} className="bg-white/10 border border-white/20 text-white px-4 py-2 rounded-l focus:outline-none w-full text-sm" />
-            <button className="bg-gs-accent px-4 py-2 rounded-r hover:bg-orange-700 transition-colors"><i className="fa-solid fa-paper-plane"></i></button>
+            <button className="bg-blue-500 px-4 py-2 rounded-r hover:bg-orange-700 transition-colors"><i className="fa-solid fa-paper-plane"></i></button>
           </div>
         </div>
       </div>
       <div className="border-t border-white/10 pt-8 text-center text-xs text-gray-500">
-        <p>&copy; 2023 TTC Rubengera. {t('allRightsReserved')}</p>
+        <p>&copy; 2023 Gs rubavu. {t('allRightsReserved')}</p>
       </div>
     </footer>
   );
@@ -223,17 +223,17 @@ function AboutPreview() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative group">
-            <div className="absolute -inset-4 bg-gs-accent/20 rounded-xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
+            <div className="absolute -inset-4 bg-blue-500/20 rounded-xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
             <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students Learning" className="relative rounded-xl shadow-2xl w-full object-cover h-[500px] grayscale group-hover:grayscale-0 transition-all duration-500" />
             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl max-w-xs hidden md:block">
               <div className="flex items-center gap-4">
-                <div className="text-4xl text-gs-accent font-serif font-bold">34+</div>
+                <div className="text-4xl text-blue-500 font-serif font-bold">34+</div>
                 <div className="text-sm text-gray-600 leading-tight">{t('yearsExperience')}</div>
               </div>
             </div>
           </div>
           <div>
-            <h3 className="text-gs-accent font-bold tracking-widest uppercase mb-2">{t('whoWeAre')}</h3>
+            <h3 className="text-blue-500 font-bold tracking-widest uppercase mb-2">{t('whoWeAre')}</h3>
             <h2 className="font-serif text-4xl md:text-5xl text-gs-dark mb-6">{t('legacyTitle')}</h2>
             <p className="text-gray-600 mb-6 leading-relaxed">{t('shortAbout')}</p>
             <div className="grid grid-cols-2 gap-6 mb-8">
@@ -246,7 +246,7 @@ function AboutPreview() {
                 <div><h4 className="font-bold text-gs-dark">{t('expertFaculty')}</h4><p className="text-sm text-gray-500">{t('passionateEducators')}</p></div>
               </div>
             </div>
-            <Link to="/about" className="text-gs-accent font-bold border-b-2 border-gs-accent pb-1 hover:text-gs-dark hover:border-gs-dark transition-colors">
+            <Link to="/about" className="text-blue-500 font-bold border-b-2 border-blue-500 pb-1 hover:text-gs-dark hover:border-gs-dark transition-colors">
               {t('ourHistory')} <i className="fa-solid fa-arrow-right ml-2"></i>
             </Link>
           </div>
@@ -259,37 +259,68 @@ function AboutPreview() {
 // Programs Preview
 function ProgramsPreview() {
   const { t } = useTranslation();
-  const options = [
-    { icon: "fa-flask", title: "SME", full: t('scienceMath'), description: t('smeDesc'), image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-globe", title: "SRS", full: t('socialStudies'), description: t('srsDesc'), image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-language", title: "LE", full: t('languageEducation'), description: t('leDesc'), image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-child", title: "ECLP", full: t('earlyChildhood'), description: t('eclpDesc'), image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  const nurseryLevels = [
+    { title: "Nursery 1", code: "N1" },
+    { title: "Nursery 2", code: "N2" },
+    { title: "Nursery 3", code: "N3" },
+  ];
+  const primaryLevels = [
+    { title: "Primary 1", code: "P1" },
+    { title: "Primary 2", code: "P2" },
+    { title: "Primary 3", code: "P3" },
+    { title: "Primary 4", code: "P4" },
+    { title: "Primary 5", code: "P5" },
+    { title: "Primary 6", code: "P6" },
+  ];
+  const secondaryLevels = [
+    { title: "Secondary 1", code: "S1" },
+    { title: "Secondary 2", code: "S2" },
+    { title: "Secondary 3", code: "S3" },
   ];
 
   return (
-    <section id="programs" className="py-20 bg-gs-dark text-white">
+    <section id="programs" className="py-20 bg-blue-900 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl mb-4">{t('academicPrograms')}</h2>
           <p className="text-gray-400 mt-2">{t('programsSubtitle')}</p>
-          <div className="w-24 h-1 bg-gs-accent mx-auto mt-4"></div>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {options.map((opt, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-xl h-80 cursor-pointer">
-              <img src={opt.image} alt={opt.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-30" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <div className="text-gs-accent text-3xl mb-2"><i className={`fa-solid ${opt.icon}`}></i></div>
-                <span className="bg-gs-accent text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">{opt.title}</span>
-                <h3 className="font-serif text-lg font-bold mb-1">{opt.full}</h3>
-                <p className="text-gray-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">{opt.description}</p>
+
+        {/* Nursery Section */}
+        <div className="mb-12">
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-baby mr-2"></i>Nursery</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            {nurseryLevels.map((level, i) => (
+              <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">
+                <span className="text-2xl font-bold text-white">{level.title}</span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <div className="text-center mt-12">
-          <Link to="/programs" className="px-8 py-3 bg-gs-accent text-white rounded hover:bg-orange-700 transition-colors">{t('viewAllPrograms')}</Link>
+
+        {/* Primary Section */}
+        <div className="mb-12">
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-school mr-2"></i>Primary</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {primaryLevels.map((level, i) => (
+              <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">
+                <span className="text-2xl font-bold text-white">{level.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Secondary Section */}
+        <div className="mb-8">
+          <h3 className="font-serif text-2xl mb-6 text-center"><i className="fa-solid fa-graduation-cap mr-2"></i>Ordinary Level</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            {secondaryLevels.map((level, i) => (
+              <div key={i} className="bg-blue-800 hover:bg-blue-700 rounded-xl p-4 text-center transition-colors cursor-pointer border border-blue-600">
+                <span className="text-2xl font-bold text-white">{level.title}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -319,7 +350,7 @@ function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-gs-accent font-bold tracking-widest uppercase mb-2">{t('whoWeAre')}</h3>
+              <h3 className="text-blue-500 font-bold tracking-widest uppercase mb-2">{t('whoWeAre')}</h3>
               <h2 className="font-serif text-4xl md:text-5xl text-gs-dark mb-6">{t('legacyTitle')}</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 {showHistory ? t('fullHistory') : t('shortAbout')}
@@ -334,7 +365,7 @@ function AboutPage() {
                   <div><h4 className="font-bold text-gs-dark">{t('expertFaculty')}</h4><p className="text-sm text-gray-500">{t('passionateEducators')}</p></div>
                 </div>
               </div>
-              <button onClick={() => setShowHistory(!showHistory)} className="text-gs-accent font-bold border-b-2 border-gs-accent pb-1 hover:text-gs-dark hover:border-gs-dark transition-colors">
+              <button onClick={() => setShowHistory(!showHistory)} className="text-blue-500 font-bold border-b-2 border-blue-500 pb-1 hover:text-gs-dark hover:border-gs-dark transition-colors">
                 {showHistory ? t('showLess') : t('ourHistory')}
               </button>
             </div>
@@ -342,7 +373,7 @@ function AboutPage() {
               <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students Learning" className="rounded-xl shadow-2xl w-full object-cover h-[500px]" />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl">
                 <div className="flex items-center gap-4">
-                  <div className="text-4xl text-gs-accent font-serif font-bold">25+</div>
+                  <div className="text-4xl text-blue-500 font-serif font-bold">25+</div>
                   <div className="text-sm text-gray-600 leading-tight">{t('yearsExperience')}</div>
                 </div>
               </div>
@@ -358,84 +389,74 @@ function AboutPage() {
 // Programs Page
 function ProgramsPage() {
   const { t } = useTranslation();
-  const options = [
-    { icon: "fa-flask", title: "SME", full: t('scienceMath'), description: t('smeDesc'), image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-globe", title: "SRS", full: t('socialStudies'), description: t('srsDesc'), image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-language", title: "LE", full: t('languageEducation'), description: t('leDesc'), image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-    { icon: "fa-child", title: "ECLP", full: t('earlyChildhood'), description: t('eclpDesc'), image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+  const nurseryLevels = [
+    { title: "Nursery 1", code: "N1" },
+    { title: "Nursery 2", code: "N2" },
+    { title: "Nursery 3", code: "N3" },
   ];
-
-  const trainings = [
-    { icon: "fa-laptop", title: t('eLearning'), desc: t('eLearningDesc') },
-    { icon: "fa-comments", title: t('englishProficiency'), desc: t('englishProficiencyDesc') },
+  const primaryLevels = [
+    { title: "Primary 1", code: "P1" },
+    { title: "Primary 2", code: "P2" },
+    { title: "Primary 3", code: "P3" },
+    { title: "Primary 4", code: "P4" },
+    { title: "Primary 5", code: "P5" },
+    { title: "Primary 6", code: "P6" },
   ];
-
-  const clubs = [
-    { icon: "fa-dove", title: t('neverAgainClub'), desc: t('neverAgainClubDesc') },
-    { icon: "fa-robot", title: t('roboticsClub'), desc: t('roboticsClubDesc') },
-    { icon: "fa-book-open", title: t('englishClub'), desc: t('englishClubDesc') },
+  const secondaryLevels = [
+    { title: "Secondary 1", code: "S1" },
+    { title: "Secondary 2", code: "S2" },
+    { title: "Secondary 3", code: "S3" },
   ];
 
   return (
     <div className="font-sans text-gs-text antialiased pt-20">
       <Navbar />
-      <section className="bg-gs-dark text-white py-20">
+      <section className="bg-blue-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="font-serif text-5xl mb-4">{t('academicPrograms')}</h1>
           <p className="text-gray-400">{t('programsSubtitle')}</p>
         </div>
       </section>
 
-      <section className="py-20 bg-gs-cream">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {options.map((opt, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-xl h-80 cursor-pointer">
-                <img src={opt.image} alt={opt.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-30" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <div className="text-gs-accent text-3xl mb-2"><i className={`fa-solid ${opt.icon}`}></i></div>
-                  <span className="bg-gs-accent text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">{opt.title}</span>
-                  <h3 className="font-serif text-lg font-bold mb-1">{opt.full}</h3>
-                  <p className="text-gray-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">{opt.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl text-gs-dark mb-2">{t('trainingPrograms')}</h2>
-            <div className="w-16 h-1 bg-gs-accent mx-auto"></div>
+          {/* Nursery Section */}
+          <div className="mb-16">
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-baby mr-3"></i>Nursery Section</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+              {nurseryLevels.map((level, i) => (
+                <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-8 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
+                  <span className="text-3xl font-bold text-blue-900">{level.title}</span>
+                  <p className="text-blue-600 mt-2 font-semibold">{level.code}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {trainings.map((tr, i) => (
-              <div key={i} className="bg-gs-cream rounded-xl p-8 shadow-lg flex items-start gap-4">
-                <div className="w-14 h-14 bg-gs-dark rounded-full flex items-center justify-center text-gs-accent text-2xl flex-shrink-0"><i className={`fa-solid ${tr.icon}`}></i></div>
-                <div><h4 className="font-bold text-gs-dark text-lg mb-1">{tr.title}</h4><p className="text-gray-500 text-sm">{tr.desc}</p></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="py-16 bg-gs-cream">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl text-gs-dark mb-2">{t('studentClubs')}</h2>
-            <div className="w-16 h-1 bg-gs-accent mx-auto"></div>
+          {/* Primary Section */}
+          <div className="mb-16">
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-school mr-3"></i>Primary Section</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {primaryLevels.map((level, i) => (
+                <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-6 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
+                  <span className="text-2xl font-bold text-blue-900">{level.title}</span>
+                  <p className="text-blue-600 mt-2 font-semibold">{level.code}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {clubs.map((c, i) => (
-              <div key={i} className="text-center group p-6 rounded-xl hover:bg-white transition-colors">
-                <div className="w-16 h-16 bg-gs-accent rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4"><i className={`fa-solid ${c.icon}`}></i></div>
-                <h4 className="font-bold text-gs-dark text-lg mb-2">{c.title}</h4>
-                <p className="text-gray-500 text-sm">{c.desc}</p>
-              </div>
-            ))}
+
+          {/* Secondary Section */}
+          <div className="mb-8">
+            <h3 className="font-serif text-3xl text-blue-900 mb-8 text-center border-b-2 border-blue-500 pb-4"><i className="fa-solid fa-graduation-cap mr-3"></i>Ordinary Level (O-Level)</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+              {secondaryLevels.map((level, i) => (
+                <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-2xl p-8 text-center transition-all cursor-pointer shadow-md hover:shadow-xl border-2 border-blue-200 hover:border-blue-500">
+                  <span className="text-3xl font-bold text-blue-900">{level.title}</span>
+                  <p className="text-blue-600 mt-2 font-semibold">{level.code}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -522,18 +543,18 @@ function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-bold text-gs-dark mb-1">{t('email')}</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gs-accent" placeholder="your@email.com" required />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="your@email.com" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gs-dark mb-1">{t('password')}</label>
               <div className="relative">
-                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-gs-accent" placeholder="••••••••" required />
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="••••••••" required />
                 <button type="button" onClick={() => setShowPassword((current) => !current)} className="absolute inset-y-0 right-0 px-3 text-gray-500 hover:text-gs-dark" aria-label={showPassword ? 'Hide password' : 'Show password'}>
                   <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
                 </button>
               </div>
             </div>
-            <button type="submit" disabled={loading} className="w-full py-3 bg-gs-accent text-white font-bold rounded hover:bg-orange-700 transition-colors disabled:opacity-50">
+            <button type="submit" disabled={loading} className="w-full py-3 bg-blue-500 text-white font-bold rounded hover:bg-orange-700 transition-colors disabled:opacity-50">
               {loading ? t('signingIn') : t('signIn')}
             </button>
             {loading ? (
@@ -545,9 +566,9 @@ function LoginPage() {
           <div className="mt-4 rounded-xl bg-[#fffaf4] border border-gs-dark/10 p-4 text-sm text-gray-600">
             {t('loginHelpText')}
           </div>
-          <p className="text-center text-sm text-gray-500 mt-4">{t('dontHaveAccount')} <Link to="/register" className="text-gs-accent font-bold">{t('registerHere')}</Link></p>
+          <p className="text-center text-sm text-gray-500 mt-4">{t('dontHaveAccount')} <Link to="/register" className="text-blue-500 font-bold">{t('registerHere')}</Link></p>
           <div className="text-center mt-6">
-            <Link to="/" className="text-gs-dark text-sm hover:text-gs-accent"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
+            <Link to="/" className="text-gs-dark text-sm hover:text-blue-500"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
           </div>
         </div>
       </div>
@@ -626,7 +647,7 @@ function RegisterPage() {
             <label className="block text-sm font-bold text-gs-dark mb-2">{t('iAmA')}</label>
             <div className="grid grid-cols-2 gap-2">
               {['student', 'teacher', 'parent'].map((r) => (
-                <button key={r} type="button" onClick={() => setRole(r)} className={`py-2 px-3 rounded text-sm font-bold capitalize transition-all ${role === r ? 'bg-gs-accent text-white' : 'bg-gray-100 text-gs-dark hover:bg-gray-200'}`}>
+                <button key={r} type="button" onClick={() => setRole(r)} className={`py-2 px-3 rounded text-sm font-bold capitalize transition-all ${role === r ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gs-dark hover:bg-gray-200'}`}>
                   {t(r)}
                 </button>
               ))}
@@ -639,23 +660,23 @@ function RegisterPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-bold text-gs-dark mb-1">{t('fullName')}</label>
-              <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gs-accent" placeholder="John Doe" required />
+              <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="John Doe" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gs-dark mb-1">{t('email')}</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gs-accent" placeholder="your@email.com" required />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="your@email.com" required />
             </div>
             <div>
               <label className="block text-sm font-bold text-gs-dark mb-1">{t('password')}</label>
               <div className="relative">
-                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-gs-accent" placeholder="••••••••" required minLength={6} />
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 pr-12 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="••••••••" required minLength={6} />
                 <button type="button" onClick={() => setShowPassword((current) => !current)} className="absolute inset-y-0 right-0 px-3 text-gray-500 hover:text-gs-dark" aria-label={showPassword ? 'Hide password' : 'Show password'}>
                   <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
                 </button>
               </div>
             </div>
             
-            <button type="submit" disabled={loading} className="w-full py-3 bg-gs-accent text-white font-bold rounded hover:bg-orange-700 transition-colors disabled:opacity-50">
+            <button type="submit" disabled={loading} className="w-full py-3 bg-blue-500 text-white font-bold rounded hover:bg-orange-700 transition-colors disabled:opacity-50">
               {loading ? t('creatingAccount') : t('createAccount')}
             </button>
             {loading ? (
@@ -664,9 +685,9 @@ function RegisterPage() {
               </div>
             ) : null}
           </form>
-          <p className="text-center text-sm text-gray-500 mt-4">{t('alreadyHaveAccount')} <Link to="/login" className="text-gs-accent font-bold">{t('signIn')}</Link></p>
+          <p className="text-center text-sm text-gray-500 mt-4">{t('alreadyHaveAccount')} <Link to="/login" className="text-blue-500 font-bold">{t('signIn')}</Link></p>
           <div className="text-center mt-6">
-            <Link to="/" className="text-gs-dark text-sm hover:text-gs-accent"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
+            <Link to="/" className="text-gs-dark text-sm hover:text-blue-500"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
           </div>
         </div>
       </div>
@@ -719,12 +740,12 @@ function ApplyPage() {
         <Navbar />
         <div className="flex items-center justify-center py-20">
           <div className="max-w-2xl bg-white p-12 rounded-2xl shadow-2xl text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="fa-solid fa-check text-4xl text-green-600"></i>
+            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i className="fa-solid fa-check text-4xl text-blue-600"></i>
             </div>
             <h2 className="font-serif text-3xl font-bold text-gs-dark mb-4">{t('applicationSubmitted')}</h2>
             <p className="text-gray-600 mb-6">{t('applicationSuccessMessage')}</p>
-            <Link to="/" className="px-6 py-3 bg-gs-accent text-white rounded hover:bg-orange-700 transition-colors">{t('backToHome')}</Link>
+            <Link to="/" className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-orange-700 transition-colors">{t('backToHome')}</Link>
           </div>
         </div>
         <Footer />
@@ -744,23 +765,23 @@ function ApplyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block font-semibold mb-1">{t('sdmsCode')} <span className="text-red-600">*</span></label>
-              <input type="text" value={form.sdmsCode} onChange={(e) => setForm((current) => ({ ...current, sdmsCode: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gs-accent" />
+              <input type="text" value={form.sdmsCode} onChange={(e) => setForm((current) => ({ ...current, sdmsCode: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('firstName')} <span className="text-red-600">*</span></label>
-              <input type="text" value={form.firstName} onChange={(e) => setForm((current) => ({ ...current, firstName: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gs-accent" />
+              <input type="text" value={form.firstName} onChange={(e) => setForm((current) => ({ ...current, firstName: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('lastName')} <span className="text-red-600">*</span></label>
-              <input type="text" value={form.lastName} onChange={(e) => setForm((current) => ({ ...current, lastName: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gs-accent" />
+              <input type="text" value={form.lastName} onChange={(e) => setForm((current) => ({ ...current, lastName: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('lastLevelMark')} <span className="text-red-600">*</span></label>
-              <input type="number" value={form.lastLevelMark} onChange={(e) => setForm((current) => ({ ...current, lastLevelMark: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-gs-accent" />
+              <input type="number" value={form.lastLevelMark} onChange={(e) => setForm((current) => ({ ...current, lastLevelMark: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('tradeOrSection')} <span className="text-red-600">*</span></label>
-              <select value={form.tradeOrSection} onChange={(e) => setForm((current) => ({ ...current, tradeOrSection: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent">
+              <select value={form.tradeOrSection} onChange={(e) => setForm((current) => ({ ...current, tradeOrSection: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500">
                 <option value="">{t('selectTrade')}</option>
                 <option value="SME">{t('scienceMath')}</option>
                 <option value="SRS">{t('socialStudies')}</option>
@@ -770,7 +791,7 @@ function ApplyPage() {
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('model')} <span className="text-red-600">*</span></label>
-              <select value={form.model} onChange={(e) => setForm((current) => ({ ...current, model: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent">
+              <select value={form.model} onChange={(e) => setForm((current) => ({ ...current, model: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500">
                 <option value="">{t('selectModel')}</option>
                 <option value={t('day')}>{t('day')}</option>
                 <option value={t('boarding')}>{t('boarding')}</option>
@@ -778,7 +799,7 @@ function ApplyPage() {
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('gender')} <span className="text-red-600">*</span></label>
-              <select value={form.gender} onChange={(e) => setForm((current) => ({ ...current, gender: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent">
+              <select value={form.gender} onChange={(e) => setForm((current) => ({ ...current, gender: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500">
                 <option value="">{t('selectGender')}</option>
                 <option value={t('male')}>{t('male')}</option>
                 <option value={t('female')}>{t('female')}</option>
@@ -786,31 +807,31 @@ function ApplyPage() {
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('level')} <span className="text-red-600">*</span></label>
-              <select value={form.level} onChange={(e) => setForm((current) => ({ ...current, level: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent">
+              <select value={form.level} onChange={(e) => setForm((current) => ({ ...current, level: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500">
                 <option value="">{t('selectLevel')}</option>
                 <option>L3</option><option>L4</option><option>L5</option><option>L6</option>
               </select>
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('fatherName')}</label>
-              <input type="text" value={form.fatherName} onChange={(e) => setForm((current) => ({ ...current, fatherName: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+              <input type="text" value={form.fatherName} onChange={(e) => setForm((current) => ({ ...current, fatherName: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('motherName')}</label>
-              <input type="text" value={form.motherName} onChange={(e) => setForm((current) => ({ ...current, motherName: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+              <input type="text" value={form.motherName} onChange={(e) => setForm((current) => ({ ...current, motherName: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('phone')} <span className="text-red-600">*</span></label>
-              <input type="tel" value={form.phone} onChange={(e) => setForm((current) => ({ ...current, phone: e.target.value }))} required pattern="[0-9]{10}" className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+              <input type="tel" value={form.phone} onChange={(e) => setForm((current) => ({ ...current, phone: e.target.value }))} required pattern="[0-9]{10}" className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">{t('dateOfBirth')} <span className="text-red-600">*</span></label>
-              <input type="date" value={form.dateOfBirth} onChange={(e) => setForm((current) => ({ ...current, dateOfBirth: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+              <input type="date" value={form.dateOfBirth} onChange={(e) => setForm((current) => ({ ...current, dateOfBirth: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
           </div>
           <div className="mt-6">
             <label className="block font-semibold mb-1">{t('studentEmail')} <span className="text-red-600">*</span></label>
-            <input type="email" value={form.studentEmail} onChange={(e) => setForm((current) => ({ ...current, studentEmail: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+            <input type="email" value={form.studentEmail} onChange={(e) => setForm((current) => ({ ...current, studentEmail: e.target.value }))} required className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
           </div>
           <div className="mt-6">
             <label className="block font-semibold mb-1">Reason to apply</label>
@@ -818,15 +839,15 @@ function ApplyPage() {
               value={form.reasonToApply}
               onChange={(e) => setForm((current) => ({ ...current, reasonToApply: e.target.value }))}
               placeholder="add reason to apply uri umurokarasi cyangwa uvuye muri o level"
-              className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-gs-accent"
+              className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="mt-8">
-            <button type="submit" disabled={submitting} className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded font-semibold shadow-md transition duration-300 disabled:opacity-50">{submitting ? t('saving') : t('apply')}</button>
+            <button type="submit" disabled={submitting} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold shadow-md transition duration-300 disabled:opacity-50">{submitting ? t('saving') : t('apply')}</button>
           </div>
         </form>
         <div className="text-center mt-6">
-          <Link to="/" className="text-gs-dark text-sm hover:text-gs-accent"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
+          <Link to="/" className="text-gs-dark text-sm hover:text-blue-500"><i className="fa-solid fa-arrow-left mr-1"></i> {t('backToHome')}</Link>
         </div>
       </div>
       <Footer />
@@ -894,23 +915,23 @@ function AdditionalApplicationPage() {
             </div>
             <div>
               <label className="block font-semibold mb-1">School fees details</label>
-              <textarea value={form.schoolFeesDetails} onChange={(e) => setForm((current) => ({ ...current, schoolFeesDetails: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-gs-accent" required />
+              <textarea value={form.schoolFeesDetails} onChange={(e) => setForm((current) => ({ ...current, schoolFeesDetails: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500" required />
             </div>
             <div>
               <label className="block font-semibold mb-1">Additional information</label>
-              <textarea value={form.additionalInformation} onChange={(e) => setForm((current) => ({ ...current, additionalInformation: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-gs-accent" />
+              <textarea value={form.additionalInformation} onChange={(e) => setForm((current) => ({ ...current, additionalInformation: e.target.value }))} className="w-full border border-gray-400 px-3 py-2 rounded min-h-28 focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
               <label className="block font-semibold mb-1">Upload school fees approvement file</label>
-              <input type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" onChange={(e) => setForm((current) => ({ ...current, schoolFeesApprovalFile: e.target.files?.[0] || null }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-gs-accent" />
+              <input type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" onChange={(e) => setForm((current) => ({ ...current, schoolFeesApprovalFile: e.target.files?.[0] || null }))} className="w-full border border-gray-400 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500" />
             </div>
-            <button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded font-semibold shadow-md transition duration-300">Submit additional form</button>
+            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold shadow-md transition duration-300">Submit additional form</button>
           </form>
         ) : null}
         {submitted ? (
           <div className="text-center py-10">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="fa-solid fa-check text-4xl text-green-600"></i>
+            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i className="fa-solid fa-check text-4xl text-blue-600"></i>
             </div>
             <h2 className="font-serif text-3xl font-bold text-gs-dark mb-4">Additional form submitted</h2>
             <p className="text-gray-600">Your extra information has been saved successfully.</p>
@@ -951,7 +972,7 @@ function PortalPage() {
   return (
     <div className="font-sans text-gs-text antialiased pt-20 min-h-screen bg-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-gs-cream rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gs-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
       <Navbar />
       <div className="max-w-7xl mx-auto px-6 relative z-10 py-12">
         <div className="text-center mb-12">

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ttc-rubengera-v1';
+const CACHE_NAME = 'gs-rubavu-v1';
 const NOTIFICATION_ICON = '/favicon.svg';
 
 self.addEventListener('install', (event) => {
@@ -15,11 +15,11 @@ self.addEventListener('push', (event) => {
   console.log('[ServiceWorker] Push received:', event);
   
   let data = {
-    title: 'TTC Rubengera',
+    title: 'Gs rubavu',
     body: 'You have a new notification',
     icon: NOTIFICATION_ICON,
     badge: NOTIFICATION_ICON,
-    tag: 'ttc-notification',
+    tag: 'gs-notification',
     requireInteraction: false,
   };
   

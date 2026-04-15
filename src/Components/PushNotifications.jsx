@@ -126,7 +126,7 @@ export default function PushNotificationManager({ user }) {
       )}
 
       {success && (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-sm text-green-700 mb-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-sm text-blue-700 mb-4">
           <i className="fa-solid fa-check-circle mr-2"></i>
           {success}
         </div>

@@ -643,7 +643,7 @@ function ApplicationManager({ applications, selectedApplicationId, setSelectedAp
                 kind: 'final-approval',
                 markStatus: 'accepted',
                 adminNotes: emailForm.adminNotes,
-              })} disabled={sending} className="rounded-2xl bg-green-600 px-4 py-3 text-sm font-bold text-white disabled:opacity-50">
+              })} disabled={sending} className="rounded-2xl bg-blue-600 px-4 py-3 text-sm font-bold text-white disabled:opacity-50">
                 Send final approval
               </button>
             </div>

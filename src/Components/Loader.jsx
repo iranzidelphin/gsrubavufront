@@ -25,8 +25,8 @@ export function Loader() {
       <div
         className={`absolute w-[500px] h-[500px] rounded-full transition-all duration-1000 ease-out ${
           clicked
-            ? 'bg-green-500/10 blur-[120px] scale-150'
-            : 'bg-green-500/5 blur-[100px] scale-100'
+            ? 'bg-blue-500/10 blur-[120px] scale-150'
+            : 'bg-blue-500/5 blur-[100px] scale-100'
         }`}
       />
 
@@ -50,7 +50,7 @@ export function Loader() {
           <div
             className={`absolute inset-0 rounded-full transition-all duration-700 ${
               clicked
-                ? 'border-[3px] border-green-500/40 shadow-[0_0_30px_rgba(34,197,94,0.2)]'
+                ? 'border-[3px] border-blue-500/40 shadow-[0_0_30px_rgba(59,130,246,0.2)]'
                 : 'border-[2px] border-white/10'
             }`}
           />
@@ -59,7 +59,7 @@ export function Loader() {
           <div
             className={`absolute inset-0 rounded-full border-[3px] border-transparent animate-spin ${
               clicked
-                ? 'border-t-green-400 shadow-[0_0_15px_rgba(74,222,128,0.3)]'
+                ? 'border-t-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
                 : 'border-t-white/70'
             }`}
             style={{ animationDuration: clicked ? '0.8s' : '1.5s' }}
@@ -69,7 +69,7 @@ export function Loader() {
           <div
             className={`absolute inset-3 rounded-full border-[2px] border-transparent animate-spin-reverse ${
               clicked
-                ? 'border-b-green-300/80'
+                ? 'border-b-blue-300/80'
                 : 'border-b-white/30'
             }`}
             style={{ animationDuration: clicked ? '1.2s' : '2s' }}
@@ -79,7 +79,7 @@ export function Loader() {
           <div
             className={`absolute inset-6 rounded-full border-[2px] border-transparent animate-spin ${
               clicked
-                ? 'border-r-green-500/60'
+                ? 'border-r-blue-500/60'
                 : 'border-r-white/15'
             }`}
             style={{ animationDuration: clicked ? '0.6s' : '2.5s' }}
@@ -89,7 +89,7 @@ export function Loader() {
           <div
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-500 ${
               clicked
-                ? 'bg-green-400 shadow-[0_0_12px_rgba(74,222,128,0.6)] scale-150'
+                ? 'bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.6)] scale-150'
                 : 'bg-white/50 scale-100'
             }`}
           />
@@ -99,7 +99,7 @@ export function Loader() {
             <div
               key={i}
               className={`absolute top-1/2 left-1/2 w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-                clicked ? 'bg-green-400/70' : 'bg-transparent'
+                clicked ? 'bg-blue-400/70' : 'bg-transparent'
               }`}
               style={{
                 transform: `rotate(${i * 90}deg) translateY(-52px) translate(-50%, -50%)`,
@@ -110,21 +110,21 @@ export function Loader() {
           ))}
         </div>
 
-        {/* TTC RUBENGERA Lettering */}
+        {/* GS RUBAVU Lettering */}
         <div className="relative">
           {/* Main text */}
           <h1
             className={`text-3xl md:text-4xl font-black tracking-[0.35em] transition-all duration-700 ${
-              clicked ? 'text-green-400' : 'text-white'
+              clicked ? 'text-blue-400' : 'text-white'
             }`}
             style={{
               textShadow: clicked
-                ? '0 0 40px rgba(74,222,128,0.3), 0 0 80px rgba(74,222,128,0.1)'
+                ? '0 0 40px rgba(59,130,246,0.3), 0 0 80px rgba(59,130,246,0.1)'
                 : '0 0 20px rgba(255,255,255,0.05)',
               letterSpacing: '0.35em',
             }}
           >
-            TTC RUBENGERA
+            GS RUBAVU
           </h1>
 
           {/* Outline/stroke layer behind */}
@@ -132,7 +132,7 @@ export function Loader() {
             className="absolute inset-0 text-3xl md:text-4xl font-black tracking-[0.35em] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.1)] transition-all duration-700"
             style={{ letterSpacing: '0.35em' }}
           >
-            TTC RUBENGERA
+            GS RUBAVU
           </h1>
         </div>
 
@@ -140,19 +140,19 @@ export function Loader() {
         <div className="flex items-center justify-center gap-3 mt-5 mb-4">
           <div
             className={`h-[1px] transition-all duration-700 ${
-              clicked ? 'w-16 bg-green-500/50' : 'w-8 bg-white/20'
+              clicked ? 'w-16 bg-blue-500/50' : 'w-8 bg-white/20'
             }`}
           />
           <div
             className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
               clicked
-                ? 'bg-green-400 rotate-45 scale-125'
+                ? 'bg-blue-400 rotate-45 scale-125'
                 : 'bg-white/30 rotate-0 scale-100'
             }`}
           />
           <div
             className={`h-[1px] transition-all duration-700 ${
-              clicked ? 'w-16 bg-green-500/50' : 'w-8 bg-white/20'
+              clicked ? 'w-16 bg-blue-500/50' : 'w-8 bg-white/20'
             }`}
           />
         </div>
@@ -160,7 +160,7 @@ export function Loader() {
         {/* Subtitle / Loading text */}
         <p
           className={`text-sm tracking-[0.3em] uppercase transition-all duration-500 ${
-            clicked ? 'text-green-500/60' : 'text-white/30'
+            clicked ? 'text-blue-500/60' : 'text-white/30'
           }`}
         >
           Loading{'.'.repeat(dots)}
@@ -174,16 +174,16 @@ export function Loader() {
 
       {/* Corner accents */}
       <div className="absolute top-6 left-6 w-8 h-8 border-l border-t border-white/10 transition-all duration-700"
-        style={{ borderColor: clicked ? 'rgba(74,222,128,0.3)' : 'rgba(255,255,255,0.1)' }}
+        style={{ borderColor: clicked ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)' }}
       />
       <div className="absolute top-6 right-6 w-8 h-8 border-r border-t border-white/10 transition-all duration-700"
-        style={{ borderColor: clicked ? 'rgba(74,222,128,0.3)' : 'rgba(255,255,255,0.1)' }}
+        style={{ borderColor: clicked ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)' }}
       />
       <div className="absolute bottom-6 left-6 w-8 h-8 border-l border-b border-white/10 transition-all duration-700"
-        style={{ borderColor: clicked ? 'rgba(74,222,128,0.3)' : 'rgba(255,255,255,0.1)' }}
+        style={{ borderColor: clicked ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)' }}
       />
       <div className="absolute bottom-6 right-6 w-8 h-8 border-r border-b border-white/10 transition-all duration-700"
-        style={{ borderColor: clicked ? 'rgba(74,222,128,0.3)' : 'rgba(255,255,255,0.1)' }}
+        style={{ borderColor: clicked ? 'rgba(59,130,246,0.3)' : 'rgba(255,255,255,0.1)' }}
       />
 
       <style>{`

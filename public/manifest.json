@@ -1,7 +1,7 @@
 {
-  "name": "TTC Rubengera",
-  "short_name": "TTC",
-  "description": "TTC Rubengera - Teacher Training College",
+  "name": "Gs rubavu",
+  "short_name": "Gs rubavu",
+  "description": "Gs rubavu - Teacher Training College",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1A3C34",
@@ -28,7 +28,7 @@
   ],
   "url_handlers": [
     {
-      "origin": "https://ttcrubengera.edu.rw"
+      "origin": "https://gsrubavu.com"
     }
   ],
   "prefer_related_applications": false
